@@ -1,7 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faHeart, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import './Card.scss';
 
 const Card = (props) => {
