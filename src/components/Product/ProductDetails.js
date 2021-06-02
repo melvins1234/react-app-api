@@ -67,9 +67,9 @@ export const ProductDetails = ({setProdImage}) => {
         <hr />
 
         <section className="main__product--social-media">
-            <a href="#" className="main__product--facebook">
+            <a href="index.html" className="main__product--facebook">
                 <i className="fab fa-facebook-f"></i>Share on Facebook</a>
-            <a href="#" className="main__product--twitter">
+            <a href="index.html" className="main__product--twitter">
                 <i className="fab fa-twitter"></i>Share on Twitter</a>
         </section>
     </section>
