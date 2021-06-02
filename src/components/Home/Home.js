@@ -1,5 +1,6 @@
 import Header from '../Header/Header';
 import Card from '../Card/Card';
+import {Product} from '../Product/Product'
 
 const productList = [
     {
@@ -56,6 +57,7 @@ const Home = () => {
         <div>
             <Header />
             <Card productlist={productList} />
+            <Product />
         </div>
     )
 }
