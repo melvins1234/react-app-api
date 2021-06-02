@@ -12,7 +12,7 @@ export const ProductDetails = ({setProdImage}) => {
             <i className="fas fa-star"></i>
             <i className="fas fa-star"></i>
             <span>0 Reviews</span>
-            <a href="#" className="main__product--submit">Submit a review</a>
+            <a href="index.html" className="main__product--submit">Submit a review</a>
         </section>
         <hr />
         <section className="bottom1__card__footer main__product--price">
