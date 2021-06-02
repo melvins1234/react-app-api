@@ -20,7 +20,7 @@ const Card = (props) => {
                 <div className="bottom1__card__flip">
                     <div className="bottom1__card__inner">
                         <div className="bottom1__card__front">
-                        <img src = {`${process.env.PUBLIC_URL}/images/${e.image}`} />
+                        <img src = {`${process.env.PUBLIC_URL}/images/${e.image}`} alt={e.productname}/>
                         </div>
                         <div className="bottom1__card__back">
                             <section className="bottom1__card__favCart">
