@@ -10,7 +10,7 @@ export const HeaderTop = () => {
             <div className="header__top--user-profile"><a href="login-page.html"><FontAwesomeIcon icon={ faUser } />Log-in</a></div>
             <div className="header__top--cart">
             <FontAwesomeIcon icon={ faShoppingBasket } />
-                <a href="#" className="">
+                <a href="index.html" className="">
                     <span className="header__top--cart-items">0 Items</span>
                     <span className="header__top--cart-price">$0.00</span>
                 </a>

@@ -24,8 +24,8 @@ const Card = (props) => {
                         </div>
                         <div className="bottom1__card__back">
                             <section className="bottom1__card__favCart">
-                                <a className="bottom1__card__add-to-cart" href="#"><FontAwesomeIcon icon={ faHeart } /></a>
-                                <a className="bottom1__card__add-to-cart" href="#"><FontAwesomeIcon icon={ faShoppingCart } /></a>
+                                <a className="bottom1__card__add-to-cart" href="index.html"><FontAwesomeIcon icon={ faHeart } /></a>
+                                <a className="bottom1__card__add-to-cart" href="index.html"><FontAwesomeIcon icon={ faShoppingCart } /></a>
                             </section>
                         </div>
                     </div>
