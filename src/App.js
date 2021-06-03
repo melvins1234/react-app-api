@@ -1,25 +1,76 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Header from './components/Header/Header';
+import Card from './components/Card/Card';
+import {Product} from './components/Product/Product'
+import {SignIn} from './components/SignIn/SignIn'
+
+const productList = [
+    {
+        productname: 'Apple MacBook Pro',
+        price: '499',
+        image: 'macbook-pro.png',
+        star: 4
+    },
+    {
+        productname: 'Beats Solo2 On Ear Headphones',
+        price: '2999',
+        image: 'beats__171717.png',
+        star: 5
+    },
+    {
+        productname: 'H-Squared tvTray',
+        price: '199',
+        image: 'H_tvTry.png',
+        star: 3
+    },
+    {
+        productname: 'Netatmo Rain Gauge',
+        price: '259',
+        image: 'Netatmo_Rain_Gauge.png',
+        star: 5
+    },
+    {
+        productname: 'Apple MacBook Pro',
+        price: '499',
+        image: 'macbook-pro.png',
+        star: 4
+    },
+    {
+        productname: 'Apple MacBook Pro',
+        price: '499',
+        image: 'macbook-pro.png',
+        star: 4
+    },
+    {
+        productname: 'Apple MacBook Pro',
+        price: '499',
+        image: 'macbook-pro.png',
+        star: 4
+    },
+    {
+        productname: 'Apple MacBook Pro',
+        price: '499',
+        image: 'macbook-pro.png',
+        star: 4
+    },
+]
+const App = () => {
+    return (
+       <Router>
+            <div>
+                <Route exact path={['/','/product']} component={Header}></Route>
+                <Route exact path="/" component={() => (<Card productlist={productList} />)} />
+                <Route exact path='/product' component={Product} />
+                <Route exact path='/login' component={SignIn} />
+            </div>
+       </Router>
+    )
 }
 
 export default App;
