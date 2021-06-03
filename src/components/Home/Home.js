@@ -1,6 +1,12 @@
 import Header from '../Header/Header';
 import Card from '../Card/Card';
 import {Product} from '../Product/Product'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 
 const productList = [
     {
@@ -54,11 +60,16 @@ const productList = [
 ]
 const Home = () => {
     return (
-        <div>
-            <Header />
-            <Card productlist={productList} />
-            <Product />
-        </div>
+       <Router>
+            <div>
+                <Header />
+                <Route exact path="/">
+                    <Card productlist={productList} />
+                </Route>
+                <Route exact path='/product' component={Product}>
+                </Route>
+            </div>
+       </Router>
     )
 }
 

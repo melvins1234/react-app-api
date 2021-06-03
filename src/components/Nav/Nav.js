@@ -1,3 +1,4 @@
+import { Link, NavLink } from 'react-router-dom';
 import './Nav.scss';
 export const Nav = () => {
    return (
@@ -8,7 +9,9 @@ export const Nav = () => {
           </button>
 
           <div className="header--brand header__mobile--logo">
-              <h1><a href="index.html">RAKU<span>TECH</span></a></h1>
+              <h1>
+                <Link to="/">RAKU<span>TECH</span></Link>
+              </h1>
           </div>
 
           <div className="header__top--cart header__mobile--cart">
@@ -22,15 +25,7 @@ export const Nav = () => {
       <section className="header__nav-bar">
           <ul>
               <li>
-                  <div className="header__main-nav__arrow-guide">
-                      <i id="main-nav-arrow" className="header__main-nav__arrow-guide--arrow-up"></i>
-                  </div>
-                  <a href="index.html" className="header__main-nav--home active" >
-                      HOME
-                  </a>
-                  <span className="header__main-nav--carret"><i className="fas fa-caret-down"></i></span>
-                  
-
+                  <NavLink to='/' exact className='header__main-nav--home' activeClassName='active'>HOME</NavLink>
                   <nav className="header__mega-menu">
                       <div className="header__mega-menu__products">
                           <h5>Category</h5>
@@ -67,11 +62,22 @@ export const Nav = () => {
                       </div>
                   </nav>
               </li>
-              <li><a href="product-list.html" className="header__main-nav--store" >STORE</a></li>
-              <li><a href="product-list.html" className="header__main-nav--iphone" >IPHONE</a></li>
-              <li><a href="product-list.html" className="header__main-nav--ipad" >IPAD</a></li>
-              <li><a href="product-list.html" className="header__main-nav--macbook" >MACBOOK</a></li>
-              <li><a href="product.html" className="header__main-nav--accessories" >ACCESSORIES</a></li>
+            <li>
+                <NavLink to='/store' className='header__main-nav--store' activeClassName='active'>STORE</NavLink>
+            </li>
+              <li>
+                <NavLink to='/iphone' className='header__main-nav--iphone' activeClassName='active'>IPHONE</NavLink>
+            </li>
+              <li>
+                <NavLink to='/ipad' className='header__main-nav--ipad' activeClassName='active'>IPAD</NavLink>
+             </li>
+              <li>
+                 <NavLink to='/macbook' className='header__main-nav--macbook' activeClassName='active'>MACBOOK</NavLink>
+                  
+                  </li>
+            <li>
+                <NavLink to='/product' className='header__main-nav--accessories' activeClassName='active'>ACCESSORIES</NavLink>
+            </li>
           </ul>
       </section>
   </nav>
