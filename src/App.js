@@ -64,7 +64,7 @@ const App = () => {
     return (
        <Router>
             <div>
-                <Route exact path={['/','/product']} component={Header}></Route>
+                <Route exact path={['/','/product', '/store', '/iphone', '/ipad', '/macbook']} component={Header}></Route>
                 <Route exact path="/" component={() => (<Card productlist={productList} />)} />
                 <Route exact path='/product' component={Product} />
                 <Route exact path='/login' component={SignIn} />
