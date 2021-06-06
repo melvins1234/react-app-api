@@ -9,7 +9,8 @@ export const Form = ({formData}) => {
 
     return (
         <form onSubmit={onSubmit}>
-            <Field field='test' fieldChanged='sample' type='text' value='test'></Field>
+            <Field field={{_uid: 'email_', label: 'Email' }} type='email'></Field>
+            <Field field={{_uid: 'pass_', label: 'Password' }} type='password'></Field>
         </form>
     )
 }

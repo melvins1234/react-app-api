@@ -9,7 +9,7 @@ const Field = ({ field, fieldChanged, type, value }) => {
                 id={field._uid}
                 name={field._uid}
                 value={value}
-                onChange={e => fieldChanged(field._uid, e.target.value)}
+                // onChange={e => fieldChanged(field._uid, e.target.value)}
             />
         </div>
     );
