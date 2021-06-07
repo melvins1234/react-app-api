@@ -1,18 +1,29 @@
 import React from "react";
 
-const Field = ({ field, fieldChanged, type, value }) => {
-    return (
-        <div key={field._uid}>
-            <label htmlFor={field._uid}>{field.label}</label>
-            <input
-                type={type || field.component}
-                id={field._uid}
-                name={field._uid}
-                value={value}
-                // onChange={e => fieldChanged(field._uid, e.target.value)}
-            />
-        </div>
-    );
+export const Input = ({ field, fieldChanged, type, value, required, placeholder, className }) => {
+  return (
+    <div key={field._uid} className="sign-up__input-group">
+      <input
+        type={type || field.component}
+        id={field._uid}
+        name={field._uid}
+        value={value}
+        required={required}
+        placeholder={placeholder}
+        // onChange={e => fieldChanged(field._uid, e.target.value)}
+      />
+      <label className={className} htmlFor={field._uid}>{field.label}</label>
+    </div>
+  );
 };
 
-export default Field;
+export const Button = ({ field, className, type, value }) => {
+  return (
+    <button 
+        className={className} 
+        type={type}
+        className='sign-up__button'>
+        {value}
+    </button>
+  );
+};

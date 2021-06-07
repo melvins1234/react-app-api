@@ -4,6 +4,8 @@ import Header from "./components/Header/Header";
 import Card from "./components/Card/Card";
 import { Product } from "./components/Product/Product";
 import { SignIn } from "./components/SignIn/SignIn";
+import { Banner } from './components/Banner/Banner'
+import { Middle } from './components/Middle/Middle'
 
 const App = () => {
   return (
@@ -12,8 +14,13 @@ const App = () => {
         <Route
           exact
           path={["/", "/product", "/store", "/iphone", "/ipad", "/macbook"]}
-          component={Header}
-        ></Route>
+          component={() => [<Header />]}
+        />
+        <Route 
+          exact
+          path='/'
+          component={() => [<Banner />, <Middle />]}
+        />
         <section className="wrapper bottom1__products">
           <Route
             exact
@@ -72,7 +79,7 @@ const App = () => {
         </section>
 
         <Route exact path="/product" component={Product} />
-        <Route exact path="/login" component={SignIn} />
+        <Route exact path={["/login", "/signup"]} component={SignIn} />
       </div>
     </Router>
   );
