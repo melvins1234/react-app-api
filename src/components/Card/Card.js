@@ -1,21 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faStar,
   faHeart,
   faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
+import {Star} from '../Star/Star'
+
 import "./Card.scss";
 
-const Card = (props) => {
-  let stars = [];
-
-  for (let index = 1; index <= 5; index++) {
-      if(index <= props.star)
-        stars.push(<i key={index} className="bottom1__card__star"><FontAwesomeIcon icon={ faStar } /></i>);
-      else
-          stars.push(<i key={index} className="bottom1__card__star bottom1__card__star--disable"><FontAwesomeIcon icon={ faStar } /></i>);
-  }
-
+export const Card = (props) => {
   return (
     <div key={props.productname} className="bottom1__card bottom1__card--hot">
       <div className="bottom1__card__flip">
@@ -39,7 +31,7 @@ const Card = (props) => {
         </div>
       </div>
       <h3 className="bottom1__card__title">{props.productname}</h3>
-      {stars}
+      <Star star={props.star}/>
       <footer className="bottom1__card__footer">
         <span className="bottom1__card__price">${props.price}</span>
         <span className="bottom1__card__price bottom1__card__price--before">
@@ -49,5 +41,3 @@ const Card = (props) => {
     </div>
   );
 };
-
-export default Card;

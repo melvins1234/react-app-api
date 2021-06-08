@@ -22,7 +22,8 @@ export const Button = ({ field, className, type, value }) => {
     <button 
         className={className} 
         type={type}
-        className='sign-up__button'>
+        className={className}
+        >
         {value}
     </button>
   );

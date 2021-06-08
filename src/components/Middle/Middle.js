@@ -1,5 +1,6 @@
 import { Article } from "./Article";
 import "./Middle.scss";
+import "./MiddleMedia.scss";
 
 export const Middle = () => {
   return (
@@ -21,6 +22,7 @@ export const Middle = () => {
           image_alt="Oculus Rift profile grande"
           offsetParentClassName="middle__article--plain"
           imageClass='middle__image--vr'
+          className='middle__content--middle'
         ></Article>
         <Article
           title="GoPro Hero 6"

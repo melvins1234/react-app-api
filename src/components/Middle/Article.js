@@ -1,7 +1,7 @@
-export const Article = ({ title, image, description, price, image_alt, offsetParentClassName, imageClass }) => {
+export const Article = ({ title, image, description, price, image_alt, offsetParentClassName, imageClass, className }) => {
   return (
     <article className={`middle__article ${offsetParentClassName}`}>
-      <section className="middle__content">
+      <section className={`middle__content ${className}`}>
         <h3 className="middle__title">{title}</h3>
         <p className="middle__description">
           {description}
