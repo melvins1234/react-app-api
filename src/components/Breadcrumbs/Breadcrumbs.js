@@ -2,9 +2,9 @@ import { NavLink } from 'react-router-dom'
 import './Breadcrumbs.scss'
 import './BreadcrumbsMedia.scss'
 
-export const Breadcrumbs = () => {
+export const Breadcrumbs = (key) => {
     return (
-        <section id="breadcrumbs" className="breadcrumbs">
+        <section key={key} id="breadcrumbs" className="breadcrumbs">
         <section className="wrapper">
             <nav className="breadcrumbs__nav">
                 <ul>

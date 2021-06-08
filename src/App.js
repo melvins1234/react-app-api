@@ -23,7 +23,7 @@ const App = () => {
         <Route
           exact
           path={["/product", "/store", "/iphone", "/ipad", "/macbook"]}
-          component={() => [<Breadcrumbs />]}
+          component={() => [<Breadcrumbs key='breadcrumbs' />]}
         />
         <Route
           exact

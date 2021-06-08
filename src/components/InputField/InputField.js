@@ -17,12 +17,11 @@ export const Input = ({ field, fieldChanged, type, value, required, placeholder,
   );
 };
 
-export const Button = ({ field, className, type, value }) => {
+export const Button = ({ className, type, value }) => {
   return (
     <button 
         className={className} 
         type={type}
-        className={className}
         >
         {value}
     </button>
