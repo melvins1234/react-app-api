@@ -74,7 +74,7 @@
             max-width: 100%;
             padding: 10px;
             width: 250px;
-            margin-bottom: 48px;
+            margin-bottom: 10px;
             min-height: 230px;
         }
 
@@ -119,12 +119,6 @@
                 display: block;
                 font-size: 8px;
                 margin-top: 10px;
-            }
-        }
-        &__star{
-            color: #FFC600;
-            &--disable{
-                color: #C1C8CE;
             }
         }
         &__footer{
