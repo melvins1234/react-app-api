@@ -2,6 +2,7 @@ import {BrowserRouter as Router, NavLink, Route} from 'react-router-dom'
 import {Input, Button} from '../InputField/InputField'
 
 import './SignIn.scss';
+import './SignInMedia.scss';
 
 export const SignIn = () =>{
     const onSubmit = (e) => {
