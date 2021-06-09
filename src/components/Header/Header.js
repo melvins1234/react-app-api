@@ -5,9 +5,9 @@ import { HeaderTop } from './HeaderTop/HeaderTop';
 import {Nav} from '../Nav/Nav';
 import CompanyLogo from '../Comp-Logo/Logo';
 
-const Header = () => {
+const Header = (key) => {
     return(
-        <header className='header'>
+        <header key={key} className='header'>
             <div className='wrapper'>
                 <HeaderTop/>
                 <CompanyLogo />
