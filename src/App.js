@@ -13,9 +13,11 @@ import { Bottom4 } from "./components/Bottom4/Bottom4";
 import { Footer } from "./components/Footer/Footer";
 import { Breadcrumbs } from "./components/Breadcrumbs/Breadcrumbs";
 import { Modal } from "./components/Modal/Modal";
+import { ProductList } from './components/ProductList/ProductList'
+
 const App = () => {
-  
-  const isModalClose = () => (!sessionStorage.getItem('isModalClose')) ? true : false;
+  const isModalClose = () =>
+    !sessionStorage.getItem("isModalClose") ? true : false;
 
   let [showModal, setShowModal] = useState(isModalClose());
   return (
@@ -23,12 +25,20 @@ const App = () => {
       <Route
         exact
         path={["/", "/product", "/store", "/iphone", "/ipad", "/macbook"]}
-        component={() => [ (showModal) ? <Modal key='modal' setShowModal={setShowModal} /> : null, <Header key="Header" />]}
+        component={() => [
+          showModal ? <Modal key="modal" setShowModal={setShowModal} /> : null,
+          <Header key="Header" />,
+        ]}
       />
       <Route
         exact
         path={["/product", "/store", "/iphone", "/ipad", "/macbook"]}
         component={() => [<Breadcrumbs key="breadcrumbs" />]}
+      />
+      <Route
+        exact
+        path={["/store", "/iphone", "/ipad", "/macbook"]}
+        component={() => [<ProductList key='ProductList'/>]}
       />
       <Route
         exact
@@ -45,7 +55,7 @@ const App = () => {
       <Route
         exact
         path="/product"
-        component={() => [<Product key="Product" />, <BottomProduct />]}
+        component={() => [<Product key="Product" />, <BottomProduct key='BottomProduct'/>]}
       />
       <Route exact path={["/login", "/signup"]} component={SignIn} />
       <Route

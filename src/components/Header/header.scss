@@ -1,78 +1,79 @@
 .header {
+  width: 100%;
+  font-weight: 600;
+
+  .wrapper {
+    flex-direction: column;
+  }
+
+  &__mobile {
+    &--logo,
+    &--cart {
+      display: none;
+      position: relative;
+    }
+
+    &--cart--badge {
+      font-size: 11px;
+      position: absolute;
+      top: -7px;
+      color: #fff;
+      background: #000;
+      border-radius: 50%;
+      padding: 0 5px;
+      right: -11px;
+      line-height: 15px;
+      height: 16px;
+      opacity: 1 !important;
+      display: none;
+    }
+  }
+
+  &__top {
+    display: flex;
+    padding: 10px 0 20px 0;
     width: 100%;
-    font-weight: 600;
 
-    .wrapper{
-        flex-direction: column;
+    span {
+      margin: 10px;
     }
 
-    &__mobile{
-
-        &--logo, &--cart{
-            display: none;  
-            position: relative;  
-        }
-
-        &--cart--badge{
-            font-size: 11px;
-            position: absolute;
-            top: -7px;
-            color: #fff;
-            background: #000;
-            border-radius: 50%;
-            padding: 0 5px;
-            right: -11px;
-            line-height: 15px;
-            height: 16px;
-            opacity: 1 !important;
-            display: none;
-        }   
+    &--user-profile {
+      margin-left: auto;
+      font-weight: bold;
     }
 
-    &__top {
-        display: flex;
-        padding: 10px 0 20px 0;
-        width: 100%;
+    div {
+      padding: 10px;
+    }
 
+    &--cart {
+      a.active {
+        color: #33a0ff;
+      }
+      a:hover {
         span {
-            margin: 10px;
+          color: #939191;
         }
+      }
+      span {
+        color: #575757;
+      }
+    }
+  }
 
-        &--user-profile {
-            margin-left: auto;
-            font-weight: bold;
-        }
+  &--brand {
+    margin: 0 auto;
+    width: fit-content;
+    margin-bottom: 61px;
 
-        div {
-            padding: 10px;
-        }
-
-        &--cart {
-            a.active{
-                color:#33A0FF;
-            }
-            a:hover{
-                opacity: 60%;
-            }
-            span {
-                opacity: 50%;
-            }
-        }
+    h1 {
+      font-size: 32px;
+      font-weight: bold;
     }
 
-    &--brand {
-        margin: 0 auto;
-        width: fit-content;
-        margin-bottom: 61px;
-
-        h1 {
-            font-size: 32px;
-            font-weight: bold;
-        }
-
-        span {
-            color: #FD2E2E;
-        }
+    span {
+      color: #fd2e2e;
     }
-    
+  }
 }
