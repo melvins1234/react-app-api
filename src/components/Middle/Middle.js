@@ -32,6 +32,7 @@ export const Middle = () => {
           image_alt="Go Pro"
           offsetParentClassName="middle__article--bgcolorGray"
           imageClass='middle__image--gopro'
+          className='middle__content--last'
         ></Article>
       </section>
     </section>
