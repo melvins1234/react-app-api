@@ -72,7 +72,7 @@ hr{
         &--review{
             color: #C1C8CE;
             font-weight: 600;
-            i:not(:last-of-type){
+            i:not(.bottom1__card__star--disable){
                 color: #FFC600;
             }
         }
@@ -328,6 +328,7 @@ hr{
             line-height: 28px;
             color: #262626;
             position: relative;
+            cursor: pointer;
             &:nth-child(2){
                 margin: 0 50px;
                 span{

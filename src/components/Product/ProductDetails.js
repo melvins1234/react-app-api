@@ -1,3 +1,4 @@
+import { Star } from '../Star/Star'
 export const ProductDetails = ({setProdImage}) => {
     const onColorClick = (color) => {
         setProdImage(color)
@@ -6,11 +7,7 @@ export const ProductDetails = ({setProdImage}) => {
     <section className="main__product--details">
         <h3 className="main__product--title">Beats Solo2 On Ear Headphones</h3>
         <section className="main__product--review">
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
+            <Star star='3'/>
             <span>0 Reviews</span>
             <a href="index.html" className="main__product--submit">Submit a review</a>
         </section>
