@@ -112,8 +112,14 @@
         }
 
         &__title{
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             font-weight: 600;
+            min-height: 35px;
+            span{
+                display: block;
+                font-size: 8px;
+                margin-top: 10px;
+            }
         }
         &__star{
             color: #FFC600;

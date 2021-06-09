@@ -9,7 +9,7 @@ import "./Card.scss";
 
 export const Card = (props) => {
   return (
-    <div key={props.productname} className="bottom1__card bottom1__card--hot">
+    <div key={props.productname} className={`bottom1__card ${props.hotProduct}`}>
       <div className="bottom1__card__flip">
         <div className="bottom1__card__inner">
           <div className="bottom1__card__front">
@@ -30,12 +30,12 @@ export const Card = (props) => {
           </div>
         </div>
       </div>
-      <h3 className="bottom1__card__title">{props.productname}</h3>
+      <h3 className="bottom1__card__title">{props.productname}<span>{props.minidesc}</span></h3>
       <Star star={props.star}/>
       <footer className="bottom1__card__footer">
-        <span className="bottom1__card__price">${props.price}</span>
+        <span className="bottom1__card__price">${props.afterPrice}</span>
         <span className="bottom1__card__price bottom1__card__price--before">
-          ${parseInt(props.price) + 100}
+        ${props.beforePrice}
         </span>
       </footer>
     </div>

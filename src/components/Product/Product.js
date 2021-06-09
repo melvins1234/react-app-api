@@ -2,7 +2,6 @@ import { useState } from "react";
 import { ProductImage } from "./ProductImage";
 import { ProductDetails } from "./ProductDetails";
 import { Aside } from "../Aside/Aside";
-import { ProductTab } from './ProductTab'
 import "./Product.scss";
 import "./ProductMedia.scss";
 
@@ -104,8 +103,8 @@ export let Product = (key) => {
           </section>
           <footer className="main__product--lower">
             <section className="main__product--header">
-                <ProductTab test='Product Information' />
-                <ProductTab test='Product Information' />
+                {/* <ProductTab test='Product Information' />
+                <ProductTab test='Product Information' /> */}
               <span
                 onClick={() => footerContent("Product Information")}
                 className="main__product--tab active"

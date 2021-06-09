@@ -86,7 +86,7 @@
         display: flex;
         justify-content: center;
  
-        input[type='text']{
+        input[type='text'], input[type='email']{
             width: 480px;
             max-width: 100%;
             padding: 22px 0 22px 20px;
