@@ -20,9 +20,9 @@ export const ProductContentCard = (props) => {
         <section className="product-listing__products__card__details--review">
           <Star star="4" />
           <span>0 Reviews</span>
-          <a href="#" className="main__product--submit">
+          <span className="main__product--submit">
             Submit a review
-          </a>
+          </span>
         </section>
         <hr />
         <span className="product-listing__products__card__details--price">

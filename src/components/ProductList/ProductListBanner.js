@@ -7,9 +7,9 @@ export const ProductListBanner = () => {
       <section className="product-listing__products__featured__text">
         <h2 className="">iPhone 8</h2>
         <p className="">Performance and design. Taken right to the edge.</p>
-        <a href="#" className="product-listing__products__featured__text--link">
+        <span className="product-listing__products__featured__text--link">
           Shop Now
-        </a>
+        </span>
       </section>
 
       <img
