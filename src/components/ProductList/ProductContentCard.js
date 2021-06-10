@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { Star } from "../Star/Star";
+import { NavLink } from "react-router-dom";
 
 export const ProductContentCard = (props) => {
   return (
@@ -20,9 +21,7 @@ export const ProductContentCard = (props) => {
         <section className="product-listing__products__card__details--review">
           <Star star="4" />
           <span>0 Reviews</span>
-          <span className="main__product--submit">
-            Submit a review
-          </span>
+          <span className="main__product--submit">Submit a review</span>
         </section>
         <hr />
         <span className="product-listing__products__card__details--price">
@@ -39,12 +38,15 @@ export const ProductContentCard = (props) => {
           exercitationem sint esse.
         </p>
         <footer>
-          <button id="product-listing--add-to-cart-btn">
-            <i>
-              <FontAwesomeIcon icon={faShoppingCart} />
-            </i>
-            Add to Cart
-          </button>
+          <NavLink to="/cart" id="product-listing--add-to-cart-btn">
+            <button id="product-listing--add-to-cart-btn">
+              <i>
+                <FontAwesomeIcon icon={faShoppingCart} />
+              </i>
+              Add to Cart
+            </button>
+          </NavLink>
+
           <button id="product-listing--like-btn">
             <i className="far fa-heart">
               <FontAwesomeIcon icon={faHeart} />
