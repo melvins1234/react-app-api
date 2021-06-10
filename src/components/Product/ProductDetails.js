@@ -4,7 +4,7 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export const ProductDetails = ({ setProdImage }) => {
+export const ProductDetails = ({ setProdImage, addToCartProduct }) => {
   const onColorClick = (color) => {
     setProdImage(color);
   };
