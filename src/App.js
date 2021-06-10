@@ -13,7 +13,8 @@ import { Bottom4 } from "./components/Bottom4/Bottom4";
 import { Footer } from "./components/Footer/Footer";
 import { Breadcrumbs } from "./components/Breadcrumbs/Breadcrumbs";
 import { Modal } from "./components/Modal/Modal";
-import { ProductList } from './components/ProductList/ProductList'
+import { ProductList } from "./components/ProductList/ProductList";
+import { Cart } from "./components/Cart/Cart";
 
 const App = () => {
   const isModalClose = () =>
@@ -24,7 +25,15 @@ const App = () => {
     <Router>
       <Route
         exact
-        path={["/", "/product", "/store", "/iphone", "/ipad", "/macbook"]}
+        path={[
+          "/",
+          "/product",
+          "/store",
+          "/iphone",
+          "/ipad",
+          "/macbook",
+          "/cart",
+        ]}
         component={() => [
           showModal ? <Modal key="modal" setShowModal={setShowModal} /> : null,
           <Header key="Header" />,
@@ -32,13 +41,15 @@ const App = () => {
       />
       <Route
         exact
-        path={["/product", "/store", "/iphone", "/ipad", "/macbook"]}
+        path={["/product", "/store", "/iphone", "/ipad", "/macbook", "/cart"]}
         component={() => [<Breadcrumbs key="breadcrumbs" />]}
       />
+      <Route exact path="/cart" component={() => [<Cart />]} />
+
       <Route
         exact
         path={["/store", "/iphone", "/ipad", "/macbook"]}
-        component={() => [<ProductList key='ProductList'/>]}
+        component={() => [<ProductList key="ProductList" />]}
       />
       <Route
         exact
@@ -55,12 +66,23 @@ const App = () => {
       <Route
         exact
         path="/product"
-        component={() => [<Product key="Product" />, <BottomProduct key='BottomProduct'/>]}
+        component={() => [
+          <Product key="Product" />,
+          <BottomProduct key="BottomProduct" />,
+        ]}
       />
       <Route exact path={["/login", "/signup"]} component={SignIn} />
       <Route
         exact
-        path={["/", "/product", "/store", "/iphone", "/ipad", "/macbook"]}
+        path={[
+          "/",
+          "/product",
+          "/store",
+          "/iphone",
+          "/ipad",
+          "/macbook",
+          "/cart",
+        ]}
         component={() => [<Footer key="Footer" />]}
       />
     </Router>

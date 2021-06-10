@@ -41,7 +41,7 @@ export const SignIn = () =>{
                                 <Input field={{_uid: 'pass_', label: 'Password' }} type='password' required='required' placeholder='Must be at least 6 characters'></Input>
                                 
                                 <Route path='/login'>
-                                    <Button type='submit' value='Sign In'></Button>
+                                    <Button className='sign-up__button' type='submit' value='Sign In'></Button>
                                 </Route>
 
                                 <Route path='/signup'>
