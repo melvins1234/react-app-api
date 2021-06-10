@@ -113,7 +113,7 @@ export const Nav = () => {
           </li>
           <li>
             <NavLink
-              to="/product"
+              to="/accessories"
               className="header__main-nav--accessories"
               activeClassName="active"
             >

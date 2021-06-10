@@ -13,10 +13,10 @@ export const HeaderTop = () => {
             </div>
             <div className="header__top--cart">
             <FontAwesomeIcon icon={ faShoppingBasket } />
-                <a href="index.html" className="">
+                <NavLink to='/cart'>
                     <span className="header__top--cart-items">0 Items</span>
                     <span className="header__top--cart-price">$0.00</span>
-                </a>
+                </NavLink>
             </div>
             <div className="header__top--search-icon"><i className="fas fa-search"><FontAwesomeIcon icon = {faSearch}></FontAwesomeIcon></i></div>
         </section>
