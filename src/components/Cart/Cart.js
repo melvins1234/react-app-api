@@ -12,7 +12,7 @@ export const Cart = () =>{
 
         <div className="cart-section__table-row" id="beats__dbdbdb.png"><div className="cart-section__table-row--product">
                 <button className="cart-section__table-row--product--cancel-item-btn"><i className="fas fa-times"></i></button>
-                <img src="images/beats__dbdbdb.png" />Beats Solo2 On Ear Headphones
+                <img src="images/beats__dbdbdb.png" alt='Beats Solo2 On Ear Headphones'/>Beats Solo2 On Ear Headphones
             </div>
             <div className="cart-section__table-row--unit-price">
                 <span className="cart-section__table-row--unit-price--label">Unit Price</span>2999
