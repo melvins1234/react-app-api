@@ -7,7 +7,8 @@ export const Aside = () => {
       <h3 className="main__best-seller__title">Best Seller</h3>
       <Card
         productname={"Apple MacBook Pro"}
-        price={"499"}
+        afterPrice={"499"}
+        beforePrice={"599"}
         image={"macbook-pro.png"}
         star={4}
       />

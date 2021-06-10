@@ -33,6 +33,7 @@ const App = () => {
           "/ipad",
           "/macbook",
           "/cart",
+          "/accessories",
         ]}
         component={() => [
           showModal ? <Modal key="modal" setShowModal={setShowModal} /> : null,
@@ -41,14 +42,22 @@ const App = () => {
       />
       <Route
         exact
-        path={["/product", "/store", "/iphone", "/ipad", "/macbook", "/cart"]}
+        path={[
+          "/product",
+          "/store",
+          "/iphone",
+          "/ipad",
+          "/macbook",
+          "/cart",
+          "/accessories",
+        ]}
         component={() => [<Breadcrumbs key="breadcrumbs" />]}
       />
-      <Route exact path="/cart" component={() => [<Cart />]} />
+      <Route exact path="/cart" component={() => [<Cart key='Cart' />]} />
 
       <Route
         exact
-        path={["/store", "/iphone", "/ipad", "/macbook"]}
+        path={["/store"]}
         component={() => [<ProductList key="ProductList" />]}
       />
       <Route
@@ -82,6 +91,7 @@ const App = () => {
           "/ipad",
           "/macbook",
           "/cart",
+          "/accessories",
         ]}
         component={() => [<Footer key="Footer" />]}
       />

@@ -3,13 +3,21 @@ import { faHeart, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { Star } from "../Star/Star";
 
 import "./Card.scss";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 export const Card = (props) => {
+
+  let history = useHistory();
+
+  let routeChange = () => {
+    history.push('/product')
+  }
+
   return (
     <div
       key={props.productname}
       className={`bottom1__card ${props.hotProduct}`}
+      onClick={routeChange}
     >
       <div className="bottom1__card__flip">
         <div className="bottom1__card__inner">

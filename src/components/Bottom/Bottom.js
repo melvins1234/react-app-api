@@ -95,25 +95,29 @@ export const BottomProduct = () => {
         <article className="bottom1__products bottom1__products--margin">
           <Card
             productname={"Apple MacBook Pro"}
-            price={"499"}
+            afterPrice={"459"}
+            beforePrice={"599"}
             image={"macbook-pro.png"}
             star={4}
           />
           <Card
             productname={"Apple MacBook Pro"}
-            price={"499"}
+            afterPrice={"459"}
+            beforePrice={"599"}
             image={"macbook-pro.png"}
             star={5}
           />
           <Card
             productname={"Apple MacBook Pro"}
-            price={"499"}
+            afterPrice={"459"}
+            beforePrice={"599"}
             image={"macbook-pro.png"}
             star={3}
           />
           <Card
             productname={"Apple MacBook Pro"}
-            price={"499"}
+            afterPrice={"459"}
+            beforePrice={"599"}
             image={"macbook-pro.png"}
             star={5}
           />
