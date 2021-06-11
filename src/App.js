@@ -15,6 +15,7 @@ import { Breadcrumbs } from "./components/Breadcrumbs/Breadcrumbs";
 import { Modal } from "./components/Modal/Modal";
 import { ProductList } from "./components/ProductList/ProductList";
 import { Cart } from "./components/Cart/Cart";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 const App = () => {
   const isModalClose = () =>
@@ -23,6 +24,7 @@ const App = () => {
   let [showModal, setShowModal] = useState(isModalClose());
   return (
     <Router>
+      <ScrollToTop key='ScrollToTop'/>
       <Route
         exact
         path={[
@@ -53,7 +55,7 @@ const App = () => {
         ]}
         component={() => [<Breadcrumbs key="breadcrumbs" />]}
       />
-      <Route exact path="/cart" component={() => [<Cart key='Cart' />]} />
+      <Route exact path="/cart" component={() => [<Cart key="Cart" />]} />
 
       <Route
         exact

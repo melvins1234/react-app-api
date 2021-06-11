@@ -1,30 +1,28 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 import { Star } from "../Star/Star";
+import { toCart } from "../../store/action/toCart-action";
 
 import "./Card.scss";
-import { NavLink, useHistory } from "react-router-dom";
 
 export const Card = (props) => {
-
-  let history = useHistory();
-
-  let routeChange = () => {
-    history.push('/product')
-  }
+  let dispatch = useDispatch();
+  const addToCartHandler = () => {
+    console.log(props);
+    dispatch(toCart(props));
+  };
 
   return (
-    <div
-      key={props.productname}
-      className={`bottom1__card ${props.hotProduct}`}
-      onClick={routeChange}
-    >
+    <div key={props.product} className={`bottom1__card ${props.hotProduct}`}>
       <div className="bottom1__card__flip">
         <div className="bottom1__card__inner">
           <div className="bottom1__card__front">
             <img
               src={`${process.env.PUBLIC_URL}/images/${props.image}`}
-              alt={props.productname}
+              alt={props.product}
             />
           </div>
           <div className="bottom1__card__back">
@@ -32,22 +30,31 @@ export const Card = (props) => {
               <span className="bottom1__card__add-to-cart">
                 <FontAwesomeIcon icon={faHeart} />
               </span>
-              <NavLink className="bottom1__card__add-to-cart" to="/cart">
+              {/* <NavLink
+                className="bottom1__card__add-to-cart"
+                to={{ pathname: "/product", state: { data: props } }}
+              >
                 <FontAwesomeIcon icon={faShoppingCart} />
-              </NavLink>
+              </NavLink> */}
+              <span
+                onClick={() => addToCartHandler()}
+                className="bottom1__card__add-to-cart"
+              >
+                <FontAwesomeIcon icon={faShoppingCart} />
+              </span>
             </section>
           </div>
         </div>
       </div>
       <h3 className="bottom1__card__title">
-        {props.productname}
+        {props.product}
         <span>{props.minidesc}</span>
       </h3>
-      <Star star={props.star} />
+      <Star star={props.stars} />
       <footer className="bottom1__card__footer">
-        <span className="bottom1__card__price">${props.afterPrice}</span>
+        <span className="bottom1__card__price">${props.price}</span>
         <span className="bottom1__card__price bottom1__card__price--before">
-          ${props.beforePrice}
+          ${props.discountedPrice}
         </span>
       </footer>
     </div>

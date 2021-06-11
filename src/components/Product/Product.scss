@@ -77,6 +77,10 @@ hr{
             }
         }
 
+        &--reviews{
+            margin: 0 10px;
+        }
+
         &--submit{
             color: #33A0FF;
         }
@@ -233,6 +237,7 @@ hr{
             @include flexStyle();
             margin-right: 16px;
             line-height: 40px;
+            cursor: pointer;
 
             &:hover {
                 opacity: 0.7;

@@ -1,16 +1,11 @@
-import { createStore } from 'redux';
+import {combineReducers} from 'redux' 
 
-const productInfoReducer = (state = {image: '', product: '', price: '', discountedPrice: '', star: ''}, action) => {
-    if(action.type === 'addToCart'){
-        return {
-            image: action.image,
-            product: action.product,
-            price: action.price,
-            discountedPrice: action.discountedPrice,
-            star: action.star
-        }
-    }
-}
+import Products from './reducers/product'
+import Cart from './reducers/toCart-reducer'
 
-const store = createStore(productInfoReducer);
-export default store;
+const allReducers = combineReducers({
+  products: Products,
+  cart: Cart
+})
+
+export default allReducers;

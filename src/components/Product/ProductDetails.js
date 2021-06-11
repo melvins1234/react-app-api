@@ -1,28 +1,34 @@
-import { Star } from "../Star/Star";
-
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useDispatch } from "react-redux";
 
-export const ProductDetails = ({ setProdImage, addToCartProduct }) => {
+import { Star } from "../Star/Star";
+import { toCart } from "../../store/action/toCart-action";
+
+// export const ProductDetails = ({ setProdImage }) => {
+export const ProductDetails = (props) => {
+  const dispatch = useDispatch();
+
+  // const onColorClick = (color) => {
+  //   setProdImage(color);
+  // };
   const onColorClick = (color) => {
-    setProdImage(color);
   };
+
   return (
     <section className="main__product--details">
-      <h3 className="main__product--title">Beats Solo2 On Ear Headphones</h3>
+      <h3 className="main__product--title">{props.product}</h3>
       <section className="main__product--review">
-        <Star star="3" />
-        <span>0 Reviews</span>
-        <a href="index.html" className="main__product--submit">
-          Submit a review
-        </a>
+        <Star star={props.star} />
+        <span className="main__product--reviews">0 Reviews</span>
+        <span className="main__product--submit">Submit a review</span>
       </section>
       <hr />
       <section className="bottom1__card__footer main__product--price">
-        <span className="bottom1__card__price">$2999</span>
+        <span className="bottom1__card__price">${props.discountedPrice}</span>
         <span className="bottom1__card__price bottom1__card__price--before">
-          $3999
+        ${props.price}
         </span>
       </section>
 
@@ -91,10 +97,20 @@ export const ProductDetails = ({ setProdImage, addToCartProduct }) => {
         </section>
 
         <section className="main__product--cart">
-          <a href="index.html" className="main__product--add-to-cart">
-            <i className="fas fa-shopping-cart"><FontAwesomeIcon icon={faShoppingCart} /></i>Add to Cart
-          </a>
-          <i className="far fa-heart main__product--heart"><FontAwesomeIcon icon={faHeart} /></i>
+          <span
+            onClick={() =>
+              dispatch(toCart("airpods-max-hero-select-202011.jpg"))
+            }
+            className="main__product--add-to-cart"
+          >
+            <i className="fas fa-shopping-cart">
+              <FontAwesomeIcon icon={faShoppingCart} />
+            </i>
+            Add to Cart
+          </span>
+          <i className="far fa-heart main__product--heart">
+            <FontAwesomeIcon icon={faHeart} />
+          </i>
         </section>
       </section>
 
