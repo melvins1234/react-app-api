@@ -20,6 +20,7 @@ export const Bottom = () => {
         discountedPrice={e.discountedPrice}
         stars={e.stars}
         hotProduct={e.hotProduct}
+        quantity={e.quantity}
       />
     );
   });

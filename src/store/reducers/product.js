@@ -7,6 +7,7 @@ let productList = [
     discountedPrice: 256,
     stars: 4,
     hotProduct: "bottom1__card--hot",
+    quantity: 1,
   },
   {
     id: "5c1ade22-ce17-402b-8471-b0863b76d94a",
@@ -16,6 +17,7 @@ let productList = [
     discountedPrice: 489,
     stars: 4,
     hotProduct: "",
+    quantity: 1,
   },
   {
     id: "4faaa310-d6d9-411b-b337-25c83f33a2bf",
@@ -25,6 +27,7 @@ let productList = [
     discountedPrice: 399,
     stars: 5,
     hotProduct: "",
+    quantity: 1,
   },
   {
     id: "a416c321-b0d3-4083-a9bc-9f7d64df5bf6",
@@ -34,6 +37,7 @@ let productList = [
     discountedPrice: 415,
     stars: 3,
     hotProduct: "",
+    quantity: 1,
   },
   {
     id: "e5f3c224-e8a1-417b-9de7-aa641aa736de",
@@ -43,6 +47,7 @@ let productList = [
     discountedPrice: 459,
     stars: 2,
     hotProduct: "",
+    quantity: 1,
   },
   {
     id: "aab671a9-0c7f-43d9-be33-6e936f001aaf",
@@ -52,6 +57,7 @@ let productList = [
     discountedPrice: 499,
     stars: 4,
     hotProduct: "",
+    quantity: 1,
   },
   {
     id: "aab671a9-0c7f-43d9-be33-6e936f001aaf",
@@ -61,6 +67,7 @@ let productList = [
     discountedPrice: 299,
     stars: 3,
     hotProduct: "",
+    quantity: 1,
   },
   {
     id: "aab671a9-0c7f-43d9-be33-6e936f001aaf",
@@ -70,6 +77,7 @@ let productList = [
     discountedPrice: 899,
     stars: 4,
     hotProduct: "",
+    quantity: 1,
   },
 ];
 
