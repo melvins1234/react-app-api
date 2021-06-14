@@ -24,6 +24,7 @@ let productList = [
     price: 499,
     discountedPrice: 399,
     stars: 5,
+    hotProduct: "",
   },
   {
     id: "a416c321-b0d3-4083-a9bc-9f7d64df5bf6",
@@ -32,6 +33,7 @@ let productList = [
     price: 529,
     discountedPrice: 415,
     stars: 3,
+    hotProduct: "",
   },
   {
     id: "e5f3c224-e8a1-417b-9de7-aa641aa736de",
@@ -40,6 +42,7 @@ let productList = [
     price: 599,
     discountedPrice: 459,
     stars: 2,
+    hotProduct: "",
   },
   {
     id: "aab671a9-0c7f-43d9-be33-6e936f001aaf",
@@ -57,6 +60,7 @@ let productList = [
     price: 359,
     discountedPrice: 299,
     stars: 3,
+    hotProduct: "",
   },
   {
     id: "aab671a9-0c7f-43d9-be33-6e936f001aaf",

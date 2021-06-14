@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 export const Cart = () => {
   const productImage = useSelector((state) => state.cart);
+  console.log(productImage);
 
   return (
     <section className="cart-section wrapper">

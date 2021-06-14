@@ -99,7 +99,7 @@ export const ProductDetails = (props) => {
         <section className="main__product--cart">
           <span
             onClick={() =>
-              dispatch(toCart("airpods-max-hero-select-202011.jpg"))
+              dispatch(toCart(props))
             }
             className="main__product--add-to-cart"
           >

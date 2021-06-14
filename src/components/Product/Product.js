@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 import { ProductImage } from "./ProductImage";
 import { ProductDetails } from "./ProductDetails";
@@ -97,8 +97,9 @@ export let Product = (props) => {
 
   // Data
   let location = useLocation();
-  const [product, setProduct] = useState(location.state.data);
-
+  let history = useHistory();
+  const [product, setProduct] = useState((location.state) ? location.state.data : {});
+  console.log((Object.entries(product).length === 0) ? history.push('/') : false);
   return (
     <section id="main" className="main">
       <section className="wrapper">

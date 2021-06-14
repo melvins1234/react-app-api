@@ -47,6 +47,7 @@
         line-height: 1;
         font-size: 20px;
         color: #33a0ff;
+        pointer-events: none;
       }
     }
     &--hot {
@@ -86,6 +87,13 @@
       backface-visibility: hidden;
       top: 0;
       background: rgba(255, 255, 255, 0.9);
+      &--link {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+      }
     }
     &__back {
       transform: rotateY(180deg);
