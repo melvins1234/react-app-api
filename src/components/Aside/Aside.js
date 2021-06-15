@@ -6,11 +6,11 @@ export const Aside = () => {
     <aside className="main__best-seller">
       <h3 className="main__best-seller__title">Best Seller</h3>
       <Card
-        productname={"Apple MacBook Pro"}
-        afterPrice={"499"}
-        beforePrice={"599"}
+        product={"Apple MacBook Pro"}
+        discountedPrice={"499"}
+        price={"599"}
         image={"macbook-pro.png"}
-        star={4}
+        stars={4}
       />
       <section className="main__best-seller--selector">
         <span></span>

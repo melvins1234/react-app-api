@@ -2,17 +2,26 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { Star } from "../Star/Star";
-import { NavLink } from "react-router-dom";
+import { NavLink, Route } from "react-router-dom";
 
 export const ProductContentCard = (props) => {
   return (
     <section className="product-listing__products__card">
       <section className="product-listing__products__card--image">
         <span>HOT</span>
-        <img
-          src={`${process.env.PUBLIC_URL}/images/${props.image}`}
-          alt={props.productname}
-        />
+        <Route path='/store'>
+          <img
+            src={`/images/${props.image}`}
+            // src={props.image}
+            alt={props.productname}
+          />
+        </Route>
+        <Route path='/accessories'>
+          <img
+            src={props.image}
+            alt={props.productname}
+          />
+        </Route>
       </section>
       <section className="product-listing__products__card__details">
         <h3 className="product-listing__products__card__details--title">

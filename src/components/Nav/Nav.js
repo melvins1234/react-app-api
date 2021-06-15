@@ -21,10 +21,10 @@ export const Nav = () => {
         </div>
 
         <div className="header__top--cart header__mobile--cart">
-          <a href="cart.html" className="">
+          <NavLink to='/cart'>
             <FontAwesomeIcon icon={faShoppingBasket} />
             <span className="header__top--cart header__mobile--cart--badge"></span>
-          </a>
+          </NavLink>
         </div>
       </section>
 

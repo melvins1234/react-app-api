@@ -1,9 +1,11 @@
+import { NavLink } from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux' 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faShoppingBasket, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
-import { NavLink } from 'react-router-dom';
 
 export const HeaderTop = () => {
+    let state = useSelector((state) => state.itemsInCart);
     return(
         <section className="header__top">
             <span>EN&nbsp; <FontAwesomeIcon icon={ faCaretDown } /></span>
@@ -14,7 +16,7 @@ export const HeaderTop = () => {
             <div className="header__top--cart">
             <FontAwesomeIcon icon={ faShoppingBasket } />
                 <NavLink to='/cart'>
-                    <span className="header__top--cart-items">0 Items</span>
+                    <span className="header__top--cart-items">{(state)} Items</span>
                     <span className="header__top--cart-price">$0.00</span>
                 </NavLink>
             </div>
