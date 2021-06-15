@@ -98,7 +98,7 @@ export let Product = (props) => {
   // Data
   let location = useLocation();
   let history = useHistory();
-  const [product, setProduct] = useState((location.state) ? location.state.data : {});
+  const [product] = useState((location.state) ? location.state.data : {});
   console.log((Object.entries(product).length === 0) ? history.push('/') : false);
   return (
     <section id="main" className="main">
