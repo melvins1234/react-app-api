@@ -1,17 +1,16 @@
 import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 import { Star } from "../Star/Star";
 import { toCart } from "../../store/action/toCart-action";
-import { itemsInCart } from "../../store/action/itemsInCart";
 
 import "./Card.scss";
 
 export const Card = (props) => {
   let dispatch = useDispatch();
-  let state = useSelector((state) => state.cart);
+  // let state = useSelector((state) => state.cart);
 
   const addToCartAnimationHandler = (e) => {
     let shoppingCart = document.querySelector(".header__top--search-icon");

@@ -4,7 +4,6 @@ const itemsInCart = (state = 0, action) => {
       return action.payload;
     default:
       return state;
-      break;
   }
 };
 
