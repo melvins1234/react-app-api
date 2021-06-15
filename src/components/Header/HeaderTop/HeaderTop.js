@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import {useSelector, useDispatch} from 'react-redux' 
+import {useSelector} from 'react-redux' 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faShoppingBasket, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
