@@ -59,7 +59,7 @@ const App = () => {
 
       <Route
         exact
-        path={["/store"]}
+        path={["/store", '/accessories']}
         component={() => [<ProductList key="ProductList" />]}
       />
       <Route

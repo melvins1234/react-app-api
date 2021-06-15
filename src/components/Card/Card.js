@@ -5,18 +5,15 @@ import { faHeart, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 import { Star } from "../Star/Star";
 import { toCart } from "../../store/action/toCart-action";
+import { itemsInCart } from "../../store/action/itemsInCart";
 
 import "./Card.scss";
-import { useState } from "react";
 
 export const Card = (props) => {
   let dispatch = useDispatch();
-  let state = useSelector(state => state.cart);
+  let state = useSelector((state) => state.cart);
 
-  // console.log(state)
-
-  const addToCartHandler = (e) => {
-
+  const addToCartAnimationHandler = (e) => {
     let shoppingCart = document.querySelector(".header__top--search-icon");
     let imgToDrag =
       e.target.offsetParent.offsetParent.previousSibling.querySelector("img");
@@ -58,12 +55,19 @@ export const Card = (props) => {
     }
   };
 
+  // dispatch(itemsInCart(JSON.parse(localStorage.cart).length));
+
+  const addToCartHandler = (data) => {
+    dispatch(toCart(data));
+    // dispatch(itemsInCart(JSON.parse(localStorage.cart).length));
+  }
+
   return (
     <div key={props.product} className={`bottom1__card ${props.hotProduct}`}>
       <NavLink
-              className="bottom1__card__back--link"
-              to={{ pathname: "/product", state: { data: props } }}
-            ></NavLink>
+        className="bottom1__card__back--link"
+        to={{ pathname: "/product", state: { data: props } }}
+      ></NavLink>
       <div className="bottom1__card__flip">
         <div className="bottom1__card__inner">
           <div className="bottom1__card__front">
@@ -73,15 +77,14 @@ export const Card = (props) => {
             />
           </div>
           <div className="bottom1__card__back">
-            
             <section className="bottom1__card__favCart">
               <span className="bottom1__card__add-to-cart">
                 <FontAwesomeIcon icon={faHeart} />
               </span>
               <span
                 onClick={(e) => {
-                  addToCartHandler(e);
-                  dispatch(toCart(props))
+                  addToCartAnimationHandler(e);
+                  addToCartHandler(props)
                 }}
                 className="bottom1__card__add-to-cart"
               >

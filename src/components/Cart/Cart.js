@@ -1,10 +1,23 @@
-import "./Cart.scss";
-
 import { useSelector } from "react-redux";
 
+import "./Cart.scss";
+import {CartList} from './CartList'
+
 export const Cart = () => {
-  const productImage = useSelector((state) => state.cart);
-  console.log(productImage);
+  const products = useSelector((state) => state.cart);
+  let cartList = products.map((e) => {
+    return(<CartList
+      key={JSON.stringify(e)}
+      datatest={e.id}
+      image={e.image}
+      product={e.product}
+      price={e.price}
+      discountedPrice={e.discountedPrice}
+      stars={e.stars}
+      hotProduct={e.hotProduct}
+      quantity={e.quantity}
+    />)
+  })
 
   return (
     <section className="cart-section wrapper">
@@ -15,45 +28,7 @@ export const Cart = () => {
         <div className="cart-section__table-header--price">PRICE</div>
       </div>
       <div className="cart-section__product-list">
-        <div className="cart-section__table-row" id="beats__dbdbdb.png">
-          <div className="cart-section__table-row--product">
-            <button className="cart-section__table-row--product--cancel-item-btn">
-              <i className="fas fa-times"></i>
-            </button>
-            <img
-              src={`images/${productImage}`}
-              alt="Beats Solo2 On Ear Headphones"
-            />
-            Beats Solo2 On Ear Headphones
-          </div>
-          <div className="cart-section__table-row--unit-price">
-            <span className="cart-section__table-row--unit-price--label">
-              Unit Price
-            </span>
-            2999
-          </div>
-          <div className="cart-section__table-row--qty">
-            <button
-              className="cart-section__table-row--qty--minus-btn"
-              id="qty-minus-btn"
-            >
-              -
-            </button>
-            <div className="cart-section__table-row--qty--number">3</div>
-            <button
-              className="cart-section__table-row--qty--plus-btn"
-              id="qty-plus-btn"
-            >
-              +
-            </button>
-          </div>
-          <div className="cart-section__table-row--price">
-            <span className="cart-section__table-row--price--label">Price</span>
-            <span className="cart-section__table-row--price--label-price">
-              $8997
-            </span>
-          </div>
-        </div>
+        {cartList}
       </div>
 
       <div className="cart-section__bottom">
