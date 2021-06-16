@@ -1,26 +1,52 @@
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Star } from "../Star/Star";
 import { toCart } from "../../store/action/toCart-action";
+import {
+  quantityAdd,
+  quantityDeduct,
+} from "../../store/action/quantityAddDeduct";
+import { favProd, unFavProd } from "../../store/action/favProd";
+import AddToCartAnime from "../AddToCartAnimate/AddToCartAnime";
 
-// export const ProductDetails = ({ setProdImage }) => {
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 export const ProductDetails = (props) => {
-  const dispatch = useDispatch();
+  let quantity = useSelector((state) => state.quantity);
 
-  // const onColorClick = (color) => {
-  //   setProdImage(color);
-  // };
-  const onColorClick = (color) => {
+  const dispatch = useDispatch();
+  const [favoriteProd, setFavoriteProd] = useState(props.favorite);
+  const [avoidSpamClick, setAvoidSpamClick] = useState(false);
+
+  const favProdHandler = (data) => {
+    !favoriteProd ? setFavoriteProd(true) : setFavoriteProd(false);
+
+    if (!favoriteProd) dispatch(favProd(data));
+    else dispatch(unFavProd(data));
   };
+
+  const onAddToCartHandler = (e) => {
+    if (avoidSpamClick) return;
+    setAvoidSpamClick(true);
+    AddToCartAnime(
+      e,
+      e.target.offsetParent.querySelector("img"),
+      e.target.parentElement
+    );
+    dispatch(toCart(props));
+
+  };
+
+  const onColorClick = (color) => {};
 
   return (
     <section className="main__product--details">
       <h3 className="main__product--title">{props.product}</h3>
       <section className="main__product--review">
-        <Star star={props.star} />
+        <Star star={props.stars} />
         <span className="main__product--reviews">0 Reviews</span>
         <span className="main__product--submit">Submit a review</span>
       </section>
@@ -28,7 +54,7 @@ export const ProductDetails = (props) => {
       <section className="bottom1__card__footer main__product--price">
         <span className="bottom1__card__price">${props.discountedPrice}</span>
         <span className="bottom1__card__price bottom1__card__price--before">
-        ${props.price}
+          ${props.price}
         </span>
       </section>
 
@@ -82,13 +108,15 @@ export const ProductDetails = (props) => {
       <section className="main__product--bottom">
         <section className="cart-section__table-row--qty main__product--quantity">
           <button
+            onClick={() => dispatch(quantityDeduct())}
             className="cart-section__table-row--qty--minus-btn"
             id="prod_qty-minus-btn"
           >
             -
           </button>
-          <div className="cart-section__table-row--qty--number">1</div>
+          <div className="cart-section__table-row--qty--number">{quantity}</div>
           <button
+            onClick={() => dispatch(quantityAdd())}
             className="cart-section__table-row--qty--plus-btn"
             id="prod_qty-plus-btn"
           >
@@ -98,9 +126,9 @@ export const ProductDetails = (props) => {
 
         <section className="main__product--cart">
           <span
-            onClick={() =>
-              dispatch(toCart(props))
-            }
+            onClick={(e) => {
+              onAddToCartHandler(e);
+            }}
             className="main__product--add-to-cart"
           >
             <i className="fas fa-shopping-cart">
@@ -108,7 +136,12 @@ export const ProductDetails = (props) => {
             </i>
             Add to Cart
           </span>
-          <i className="far fa-heart main__product--heart">
+          <i
+            onClick={() => favProdHandler(props)}
+            className={`far fa-heart main__product--heart ${
+              favoriteProd ? "fave" : ""
+            }`}
+          >
             <FontAwesomeIcon icon={faHeart} />
           </i>
         </section>

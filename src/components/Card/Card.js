@@ -6,6 +6,7 @@ import { toCart } from "../../store/action/toCart-action";
 import { itemsInCart } from "../../store/action/itemsInCart";
 import { favProd, unFavProd } from "../../store/action/favProd";
 import { itemsTotalInCart } from "../../store/action/itemsTotalInCart";
+import AddToCartAnime from "../AddToCartAnimate/AddToCartAnime";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -22,48 +23,6 @@ export const Card = (props) => {
   let dispatch = useDispatch();
   const [addToCart, setAddToCart] = useState(false);
   const [favoriteProd, setFavoriteProd] = useState(props.favorite);
-
-  const addToCartAnimationHandler = (e) => {
-    let shoppingCart = document.querySelector(".header__top--search-icon");
-    let imgToDrag =
-      e.target.offsetParent.offsetParent.previousSibling.querySelector("img");
-
-    if (imgToDrag) {
-      var imgclone = imgToDrag.cloneNode(true);
-      imgclone.style.cssText =
-        "top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.8; position: absolute; height: 150px; width: 150px; z-index: 100;";
-
-      e.target.offsetParent.offsetParent.offsetParent.parentElement.parentElement.appendChild(
-        imgclone
-      );
-
-      imgclone.animate(
-        [
-          {
-            opacity: "0.8",
-            position: "absolute",
-            height: "150px",
-            width: "150px",
-            "z-index": "100",
-          },
-          {
-            top: shoppingCart.offsetTop - 1000 + "px",
-            left: shoppingCart.offsetLeft + 10 + "px",
-            width: "75px",
-            height: "75px",
-          },
-        ],
-        {
-          easing: "cubic-bezier(0.42, 0, 0.58, 1)",
-          duration: 1000,
-        }
-      );
-      imgclone.animate([{}, { width: 0, height: 0 }], 1000);
-      setTimeout(function () {
-        imgclone.remove();
-      }, 900);
-    }
-  };
 
   const addToCartHandler = (data) => {
     setAddToCart(true);
@@ -115,7 +74,14 @@ export const Card = (props) => {
               </span>
               <span
                 onClick={(e) => {
-                  addToCartAnimationHandler(e);
+                  AddToCartAnime(
+                    e,
+                    e.target.offsetParent.offsetParent.previousSibling.querySelector(
+                      "img"
+                    ),
+                    e.target.offsetParent.offsetParent.offsetParent
+                      .parentElement.parentElement
+                  );
                   addToCartHandler(props);
                 }}
                 className="bottom1__card__add-to-cart"

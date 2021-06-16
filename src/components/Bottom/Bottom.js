@@ -1,9 +1,9 @@
-import { BottomHeader } from "./BottomHeader";
-import { Card } from "../Card/Card";
-import { NavLink } from "react-router-dom";
-
 import { useSelector } from "react-redux";
 
+import { BottomHeader } from "./BottomHeader";
+import { Card } from "../Card/Card";
+
+import "./Bottom.scss";
 import "./BottomMedia.scss";
 
 export const Bottom = () => {
@@ -31,9 +31,7 @@ export const Bottom = () => {
       <section className="wrapper">
         <BottomHeader />
         <article className="bottom1__products">{productListCard}</article>
-        <NavLink to="/product" className="bottom1__button">
-          Load More
-        </NavLink>
+        <span className="bottom1__button">Load More</span>
       </section>
     </section>
   );
