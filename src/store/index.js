@@ -1,13 +1,15 @@
 import {combineReducers} from 'redux' 
 
 import Products from './reducers/product'
-import Cart from './reducers/toCart-reducer'
-import itemsInCart from './reducers/itemsInCart-reducer'
+import Cart from './reducers/toCart'
+import itemsInCart from './reducers/itemsInCart'
+import itemsTotalInCart from './reducers/itemsTotalInCart'
 
 const allReducers = combineReducers({
   products: Products,
   cart: Cart,
-  itemsInCart: itemsInCart
+  itemsInCart: itemsInCart,
+  totalPrice: itemsTotalInCart
 })
 
 export default allReducers;

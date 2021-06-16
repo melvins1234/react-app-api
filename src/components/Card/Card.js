@@ -1,16 +1,18 @@
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
+
+import { toCart } from "../../store/action/toCart-action";
+import { itemsInCart } from "../../store/action/itemsInCart";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 import { Star } from "../Star/Star";
-import { toCart } from "../../store/action/toCart-action";
 
 import "./Card.scss";
 
 export const Card = (props) => {
   let dispatch = useDispatch();
-  // let state = useSelector((state) => state.cart);
 
   const addToCartAnimationHandler = (e) => {
     let shoppingCart = document.querySelector(".header__top--search-icon");
@@ -54,12 +56,16 @@ export const Card = (props) => {
     }
   };
 
-  // dispatch(itemsInCart(JSON.parse(localStorage.cart).length));
-
   const addToCartHandler = (data) => {
     dispatch(toCart(data));
-    // dispatch(itemsInCart(JSON.parse(localStorage.cart).length));
-  }
+    dispatch(
+      itemsInCart(
+        JSON.parse(localStorage.getItem("cart"))
+          ? JSON.parse(localStorage.getItem("cart")).length
+          : 0
+      )
+    );
+  };
 
   return (
     <div key={props.product} className={`bottom1__card ${props.hotProduct}`}>
@@ -83,7 +89,7 @@ export const Card = (props) => {
               <span
                 onClick={(e) => {
                   addToCartAnimationHandler(e);
-                  addToCartHandler(props)
+                  addToCartHandler(props);
                 }}
                 className="bottom1__card__add-to-cart"
               >
