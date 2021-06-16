@@ -42,6 +42,14 @@
       align-items: center;
       margin: 8px;
 
+      &.fave{
+      border: 2px solid rgba(252, 40, 40, 0.3);
+
+        svg {
+          color: #fc2828;
+        }
+      }
+
       svg {
         content: "\f07a";
         line-height: 1;

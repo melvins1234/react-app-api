@@ -11,7 +11,7 @@ const Store = () => {
         return (
           <ProductContentCard
             key={e.id}
-            datatest={e.id}
+            id={e.id}
             image={e.image}
             product={e.product}
             description={e.description}
@@ -20,6 +20,7 @@ const Store = () => {
             stars={e.stars}
             hotProduct={e.hotProduct}
             quantity={e.quantity}
+            favorite={e.favorite}
           />
         );
       })}

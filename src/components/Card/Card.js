@@ -1,11 +1,18 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { toCart } from "../../store/action/toCart-action";
 import { itemsInCart } from "../../store/action/itemsInCart";
+import { favProd, unFavProd } from "../../store/action/favProd";
+import { itemsTotalInCart } from "../../store/action/itemsTotalInCart";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHeart,
+  faShoppingCart,
+  faCheck,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { Star } from "../Star/Star";
 
@@ -13,6 +20,8 @@ import "./Card.scss";
 
 export const Card = (props) => {
   let dispatch = useDispatch();
+  const [addToCart, setAddToCart] = useState(false);
+  const [favoriteProd, setFavoriteProd] = useState(props.favorite);
 
   const addToCartAnimationHandler = (e) => {
     let shoppingCart = document.querySelector(".header__top--search-icon");
@@ -57,6 +66,10 @@ export const Card = (props) => {
   };
 
   const addToCartHandler = (data) => {
+    setAddToCart(true);
+    setTimeout(() => {
+      setAddToCart(false);
+    }, 2000);
     dispatch(toCart(data));
     dispatch(
       itemsInCart(
@@ -65,6 +78,15 @@ export const Card = (props) => {
           : 0
       )
     );
+
+    dispatch(itemsTotalInCart(data.discountedPrice));
+  };
+
+  const favProdHandler = (data) => {
+    !favoriteProd ? setFavoriteProd(true) : setFavoriteProd(false);
+
+    if (!favoriteProd) dispatch(favProd(data));
+    else dispatch(unFavProd(data));
   };
 
   return (
@@ -83,7 +105,12 @@ export const Card = (props) => {
           </div>
           <div className="bottom1__card__back">
             <section className="bottom1__card__favCart">
-              <span className="bottom1__card__add-to-cart">
+              <span
+                onClick={() => favProdHandler(props)}
+                className={`bottom1__card__add-to-cart ${
+                  favoriteProd ? "fave" : ""
+                }`}
+              >
                 <FontAwesomeIcon icon={faHeart} />
               </span>
               <span
@@ -93,7 +120,7 @@ export const Card = (props) => {
                 }}
                 className="bottom1__card__add-to-cart"
               >
-                <FontAwesomeIcon icon={faShoppingCart} />
+                <FontAwesomeIcon icon={addToCart ? faCheck : faShoppingCart} />
               </span>
             </section>
           </div>

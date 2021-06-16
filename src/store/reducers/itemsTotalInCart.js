@@ -1,12 +1,26 @@
 let initState = 0;
-// if (JSON.parse(localStorage.getItem("cart"))) {
-//   JSON.parse(localStorage.getItem("cart")).map((e) => {
-//     initState = e.discountedPrice + initState;
-//   });
-// }
 
-const itemsTotalInCart = (state = initState, action) => {
+if (localStorage.getItem("cart")) {
+  JSON.parse(localStorage.getItem("cart")).forEach((e) => {
+    initState =
+      parseFloat(e.discountedPrice) * parseInt(e.quantity) +
+      parseFloat(initState);
+  });
+}
+
+const itemsTotalInCart = (state = initState.toFixed(2), action) => {
   switch (action.type) {
+    case "total-price":
+      let initState = 0;
+
+      if (localStorage.getItem("cart")) {
+        JSON.parse(localStorage.getItem("cart")).forEach((e) => {
+          initState =
+            parseFloat(e.discountedPrice) * parseInt(e.quantity) +
+            parseFloat(initState);
+        });
+      }
+      return initState.toFixed(2);
     default:
       return state;
   }

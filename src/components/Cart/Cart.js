@@ -8,7 +8,7 @@ export const Cart = () => {
   let cartList = products.map((e) => {
     return(<CartList
       key={JSON.stringify(e)}
-      datatest={e.id}
+      id={e.id}
       image={e.image}
       product={e.product}
       price={e.price}

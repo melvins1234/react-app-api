@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { itemsInCart } from "../../../store/action/itemsInCart";
+// import { itemsTotalInCart } from "../../../store/action/itemsTotalInCart";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -19,7 +20,10 @@ export const HeaderTop = () => {
         : 0
     )
   );
+
+  // dispatch(itemsTotalInCart());
   let state = useSelector((state) => state.itemsInCart);
+  let totalPrice = useSelector((state) => state.totalPrice);
 
   return (
     <section className="header__top">
@@ -38,7 +42,7 @@ export const HeaderTop = () => {
         <FontAwesomeIcon icon={faShoppingBasket} />
         <NavLink to="/cart">
           <span className="header__top--cart-items">{state} Items</span>
-          <span className="header__top--cart-price">$0.00</span>
+          <span className="header__top--cart-price">${totalPrice}</span>
         </NavLink>
       </div>
       <div className="header__top--search-icon">

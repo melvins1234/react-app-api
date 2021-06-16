@@ -464,6 +464,10 @@
             padding: 10px;
             font-size: 1em;
             margin-right: 15px;
+
+            &.fave{
+              color: #fc2828;
+            }
           }
           #product-listing--add-to-cart-btn {
             display: flex;

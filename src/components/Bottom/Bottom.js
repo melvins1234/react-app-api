@@ -13,7 +13,7 @@ export const Bottom = () => {
     return (
       <Card
         key={JSON.stringify(e)}
-        datatest={e.id}
+        id={e.id}
         image={e.image}
         product={e.product}
         price={e.price}
@@ -21,6 +21,7 @@ export const Bottom = () => {
         stars={e.stars}
         hotProduct={e.hotProduct}
         quantity={e.quantity}
+        favorite={e.favorite}
       />
     );
   });

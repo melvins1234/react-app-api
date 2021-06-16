@@ -3,9 +3,9 @@ let initState = (JSON.parse(localStorage.getItem('cart'))) ? JSON.parse(localSto
 const Cart = (state = initState, action) => {
   switch (action.type) {
     case "addToCart":
-      let isExisted = state.find((e) => e.datatest === action.payload.datatest);
+      let isExisted = state.find((e) => e.id === action.payload.id);
       let isExistedIndex = state.findIndex(
-        (e) => e.datatest === action.payload.datatest
+        (e) => e.id === action.payload.id
       );
       if (isExisted) {
         state.splice(isExistedIndex, 1);

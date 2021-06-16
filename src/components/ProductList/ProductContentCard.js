@@ -1,17 +1,20 @@
-import {  Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 import { toCart } from "../../store/action/toCart-action";
 import { itemsInCart } from "../../store/action/itemsInCart";
+import { favProd, unFavProd } from "../../store/action/favProd";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { Star } from "../Star/Star";
 
-
 const ProductContentCard = (props) => {
+  const [favoriteProd, setFavoriteProd] = useState(props.favorite);
+  console.log(favoriteProd);
 
   const truncate = (str, n) => {
     return str.length > n ? str.substr(0, n - 1) + "..." : str;
@@ -53,6 +56,13 @@ const ProductContentCard = (props) => {
         imgclone.remove();
       }, 900);
     }
+  };
+
+  const favProdHandler = (data) => {
+    !favoriteProd ? setFavoriteProd(true) : setFavoriteProd(false);
+
+    if (!favoriteProd) dispatch(favProd(data));
+    else dispatch(unFavProd(data));
   };
 
   let dispatch = useDispatch();
@@ -103,7 +113,7 @@ const ProductContentCard = (props) => {
           <button
             onClick={(e) => {
               addToCartAnimationHandler(e);
-              addToCartHandler(props)
+              addToCartHandler(props);
             }}
             id="product-listing--add-to-cart-btn"
           >
@@ -113,7 +123,11 @@ const ProductContentCard = (props) => {
             Add to Cart
           </button>
 
-          <button id="product-listing--like-btn">
+          <button
+            onClick={() => favProdHandler(props)}
+            id="product-listing--like-btn"
+            className={(favoriteProd) ? "fave" : ""}
+          >
             <i className="far fa-heart">
               <FontAwesomeIcon icon={faHeart} />
             </i>
