@@ -1,4 +1,6 @@
-const Cart = (state = [], action) => {
+let initState = (JSON.parse(localStorage.getItem('cart'))) ? JSON.parse(localStorage.getItem('cart')) : [];
+
+const Cart = (state = initState, action) => {
   switch (action.type) {
     case "addToCart":
       let isExisted = state.find((e) => e.datatest === action.payload.datatest);
