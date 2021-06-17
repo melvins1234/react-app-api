@@ -11,3 +11,7 @@ export const quantityDeduct = (value) => {
     payload: value
   }
 }
+
+export const resetQuantity = () => {
+  return {type: 'reset-quant'}
+}

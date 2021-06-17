@@ -3,12 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Star } from "../Star/Star";
 import { toCart } from "../../store/action/toCart-action";
-import {
-  quantityAdd,
-  quantityDeduct,
-} from "../../store/action/quantityAddDeduct";
+import { quantityAdd, quantityDeduct, } from "../../store/action/quantityAddDeduct";
 import { favProd, unFavProd } from "../../store/action/favProd";
 import AddToCartAnime from "../AddToCartAnimate/AddToCartAnime";
+import { itemsInCart } from "../../store/action/itemsInCart";
+import { itemsTotalInCart } from "../../store/action/itemsTotalInCart";
 
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
@@ -19,7 +18,6 @@ export const ProductDetails = (props) => {
 
   const dispatch = useDispatch();
   const [favoriteProd, setFavoriteProd] = useState(props.favorite);
-  const [avoidSpamClick, setAvoidSpamClick] = useState(false);
 
   const favProdHandler = (data) => {
     !favoriteProd ? setFavoriteProd(true) : setFavoriteProd(false);
@@ -29,15 +27,21 @@ export const ProductDetails = (props) => {
   };
 
   const onAddToCartHandler = (e) => {
-    if (avoidSpamClick) return;
-    setAvoidSpamClick(true);
+
     AddToCartAnime(
       e,
       e.target.offsetParent.querySelector("img"),
       e.target.parentElement
     );
-    dispatch(toCart(props));
-
+    dispatch(toCart({ ...props, quantity: quantity }));
+    dispatch(
+      itemsInCart(
+        JSON.parse(localStorage.getItem("cart"))
+          ? JSON.parse(localStorage.getItem("cart")).length
+          : 0
+      )
+    );
+    dispatch(itemsTotalInCart(e.discountedPrice));
   };
 
   const onColorClick = (color) => {};

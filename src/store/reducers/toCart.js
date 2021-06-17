@@ -1,25 +1,34 @@
-let initState = (JSON.parse(localStorage.getItem('cart'))) ? JSON.parse(localStorage.getItem('cart')) : [];
+let initState = JSON.parse(localStorage.getItem("cart"))
+  ? JSON.parse(localStorage.getItem("cart"))
+  : [];
 
 const Cart = (state = initState, action) => {
   switch (action.type) {
     case "addToCart":
-      let isExisted = state.find((e) => e.id === action.payload.id);
-      let isExistedIndex = state.findIndex(
-        (e) => e.id === action.payload.id
-      );
-      if (isExisted) {
-        state.splice(isExistedIndex, 1);
-        let cartList = [
-          ...state,
-          { ...isExisted, quantity: isExisted.quantity + 1 },
-        ];
-        localStorage.setItem('cart', JSON.stringify(cartList));
-        return cartList;
+      let isExistedIndex = state.findIndex((e) => e.id === action.payload.id);
+      if (isExistedIndex >= 0) {
+        state = initState;
+        state.splice(isExistedIndex, 1, {
+          ...action.payload,
+          quantity: state[isExistedIndex].quantity + action.payload.quantity,
+        });
+        localStorage.setItem("cart", JSON.stringify(state));
       } else {
         state.push(action.payload);
-        localStorage.setItem('cart', JSON.stringify(state));
-        return state;
+        localStorage.setItem("cart", JSON.stringify(state));
       }
+      return state;
+
+    case "toCartMinus":
+      let isExistedIndex_ = state.findIndex((e) => e.id === action.payload.id);
+      state = initState;
+      state.splice(isExistedIndex_, 1, {
+        ...action.payload,
+        quantity: state[isExistedIndex_].quantity - 1,
+      });
+      localStorage.setItem("cart", JSON.stringify(state));
+      return state;
+
     default:
       return state;
   }

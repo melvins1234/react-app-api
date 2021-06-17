@@ -26,9 +26,7 @@ export const Card = (props) => {
 
   const addToCartHandler = (data) => {
     setAddToCart(true);
-    setTimeout(() => {
-      setAddToCart(false);
-    }, 2000);
+ 
     dispatch(toCart(data));
     dispatch(
       itemsInCart(

@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { itemsInCart } from "../../../store/action/itemsInCart";
-// import { itemsTotalInCart } from "../../../store/action/itemsTotalInCart";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

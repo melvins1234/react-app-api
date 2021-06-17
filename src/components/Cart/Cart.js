@@ -5,6 +5,8 @@ import {CartList} from './CartList'
 
 export const Cart = () => {
   const products = useSelector((state) => state.cart);
+  let totalPrice = useSelector((state) => state.totalPrice);
+
   let cartList = products.map((e) => {
     return(<CartList
       key={JSON.stringify(e)}
@@ -41,7 +43,7 @@ export const Cart = () => {
         <div className="cart-section__bottom__total-table">
           <div className="cart-section__bottom__total-table--subtotal">
             <span>Subtotal</span>
-            <span id="cart-section__subtotal">$ 8997.00</span>
+            <span id="cart-section__subtotal">$ {totalPrice}</span>
           </div>
           <div className="cart-section__bottom__total-table--shipping-fee">
             <span>Shipping fee</span>
@@ -53,7 +55,7 @@ export const Cart = () => {
           </div>
           <div className="cart-section__bottom__total-table--total">
             <span>Total</span>
-            <span id="cart-section__total">$ 9017.00</span>
+            <span id="cart-section__total">$ {(parseFloat(totalPrice) + 20).toFixed(2)}</span>
           </div>
           <div className="cart-section__bottom__total-table--check-out">
             <button className="cart-section__bottom__total-table--check-out--btn">
