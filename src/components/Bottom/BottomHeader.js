@@ -1,4 +1,3 @@
-import './BottomHeader.scss';
 export const BottomHeader = () => {
   return (
     <header className="bottom1__header">

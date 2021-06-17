@@ -72,7 +72,7 @@ let productList = [
     quantity: 1,
   },
   {
-    id: "aab671a9-0c7f-43d9-be33-6e936f001aaf",
+    id: "9d23ffde-f525-4264-9a62-7e35be3778b1",
     image: "MJQJ3_AV3.png",
     product: "Magic Keyboard for iPad Pro 11-inch",
     description:
@@ -84,7 +84,7 @@ let productList = [
     quantity: 1,
   },
   {
-    id: "aab671a9-0c7f-43d9-be33-6e936f001aaf",
+    id: "ed33bc3a-9319-4a3e-8dab-0ce58d63b662",
     image: "ipad-2020-hero-landing.jpg",
     product: "iPad (8th Generation)",
     description:
@@ -96,9 +96,31 @@ let productList = [
     quantity: 1,
   },
 ];
+let initState = JSON.parse(localStorage.getItem("products"))
+  ? JSON.parse(localStorage.getItem("products"))
+  : productList;
+const Products = (state = initState, action) => {
+  switch (action.type) {
+    case "favorite":
+      let isExistedIndex = state.findIndex(
+        (e) => e.id === action.payload.id
+      );
 
-const Products = (state = productList, action) => {
-  return state;
+      if (isExistedIndex >= 0) state[isExistedIndex].favorite = true;
+      // else state.push({...action.payload, favorite: true})
+      localStorage.setItem("products", JSON.stringify(state));
+
+      return state;
+    case "unfavorite":
+      let isExistedIndex_ = state.findIndex(
+        (e) => e.id === action.payload.id
+      );
+      state[isExistedIndex_].favorite = false;
+      localStorage.setItem("products", JSON.stringify(state));
+      return state;
+    default:
+      return state;
+  }
 };
 
 export default Products;

@@ -31,7 +31,7 @@ const Accessories = () => {
           return (
             <ProductContentCard
               key={e.id}
-              datatest={e.id}
+              id={e.id}
               image={e.image}
               product={e.title}
               description={e.description}

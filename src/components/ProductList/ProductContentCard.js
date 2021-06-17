@@ -1,58 +1,30 @@
-import {  Route } from "react-router-dom";
+import { Route, NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 import { toCart } from "../../store/action/toCart-action";
 import { itemsInCart } from "../../store/action/itemsInCart";
+import { favProd, unFavProd } from "../../store/action/favProd";
+import AddToCartAnime from "../AddToCartAnimate/AddToCartAnime";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { Star } from "../Star/Star";
 
-
 const ProductContentCard = (props) => {
+  const [favoriteProd, setFavoriteProd] = useState(props.favorite);
 
   const truncate = (str, n) => {
     return str.length > n ? str.substr(0, n - 1) + "..." : str;
   };
 
-  const addToCartAnimationHandler = (e) => {
-    let shoppingCart = document.querySelector(".header__top--search-icon");
-    let imgToDrag = e.target.offsetParent.querySelector("img");
+  const favProdHandler = (data) => {
+    !favoriteProd ? setFavoriteProd(true) : setFavoriteProd(false);
 
-    if (imgToDrag) {
-      var imgclone = imgToDrag.cloneNode(true);
-      imgclone.style.cssText =
-        "top: 50%; left: 0; transform: translateY(-50%); opacity: 0.8; position: absolute; height: 150px; width: 150px; z-index: 100;";
-
-      e.target.offsetParent.appendChild(imgclone);
-      imgclone.animate(
-        [
-          {
-            opacity: "0.8",
-            position: "absolute",
-            height: "150px",
-            width: "150px",
-            "z-index": "100",
-          },
-          {
-            top: shoppingCart.offsetTop - 1000 + "px",
-            left: shoppingCart.offsetLeft + 10 + "px",
-            width: "75px",
-            height: "75px",
-          },
-        ],
-        {
-          easing: "cubic-bezier(0.42, 0, 0.58, 1)",
-          duration: 1000,
-        }
-      );
-      imgclone.animate([{}, { width: 0, height: 0 }], 1000);
-      setTimeout(function () {
-        imgclone.remove();
-      }, 900);
-    }
+    if (!favoriteProd) dispatch(favProd(data));
+    else dispatch(unFavProd(data));
   };
 
   let dispatch = useDispatch();
@@ -69,6 +41,10 @@ const ProductContentCard = (props) => {
 
   return (
     <section className="product-listing__products__card">
+      <NavLink
+        className="product-listing__products__card--link"
+        to={{ pathname: "/product", state: { data: props } }}
+      />
       <section className="product-listing__products__card--image">
         <span>HOT</span>
         <Route path="/store">
@@ -102,8 +78,8 @@ const ProductContentCard = (props) => {
         <footer>
           <button
             onClick={(e) => {
-              addToCartAnimationHandler(e);
-              addToCartHandler(props)
+              AddToCartAnime(e, e.target.offsetParent.querySelector("img"), e.target.offsetParent);
+              addToCartHandler(props);
             }}
             id="product-listing--add-to-cart-btn"
           >
@@ -113,7 +89,11 @@ const ProductContentCard = (props) => {
             Add to Cart
           </button>
 
-          <button id="product-listing--like-btn">
+          <button
+            onClick={() => favProdHandler(props)}
+            id="product-listing--like-btn"
+            className={favoriteProd ? "fave" : ""}
+          >
             <i className="far fa-heart">
               <FontAwesomeIcon icon={faHeart} />
             </i>

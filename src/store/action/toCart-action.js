@@ -4,3 +4,10 @@ export const toCart = (value) => {
         payload: value
     }
 }
+
+export const toCartMinus = (value) => {
+    return {
+        type: 'toCartMinus',
+        payload: value
+    }
+}
