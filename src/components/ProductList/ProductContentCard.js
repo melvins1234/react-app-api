@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { toCart } from "../../store/action/toCart-action";
 import { itemsInCart } from "../../store/action/itemsInCart";
+import { itemsTotalInCart } from "../../store/action/itemsTotalInCart";
 import { favProd, unFavProd } from "../../store/action/favProd";
 import AddToCartAnime from "../AddToCartAnimate/AddToCartAnime";
 
@@ -37,6 +38,8 @@ const ProductContentCard = (props) => {
           : 0
       )
     );
+    dispatch(itemsTotalInCart());
+
   };
 
   return (
