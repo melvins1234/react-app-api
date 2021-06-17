@@ -4,6 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { ProductImage } from "./ProductImage";
 import { ProductDetails } from "./ProductDetails";
 import { Aside } from "../Aside/Aside";
+
 import "./Product.scss";
 import "./ProductMedia.scss";
 
@@ -109,10 +110,16 @@ export let Product = (props) => {
             <ProductDetails setProdImage={setProdImage} /> */}
             <ProductImage image={product.image} alt={product.product} />
             <ProductDetails
+              key={product.id}
+              id={product.id}
+              image={product.image}
               product={product.product}
-              star={product.stars}
               price={product.price}
               discountedPrice={product.discountedPrice}
+              stars={product.stars}
+              hotProduct={product.hotProduct}
+              quantity={product.quantity}
+              favorite={product.favorite}
             />
           </section>
           <footer className="main__product--lower">

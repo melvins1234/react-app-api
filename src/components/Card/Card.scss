@@ -42,6 +42,14 @@
       align-items: center;
       margin: 8px;
 
+      &.fave{
+      border: 2px solid rgba(252, 40, 40, 0.3);
+
+        svg {
+          color: #fc2828;
+        }
+      }
+
       svg {
         content: "\f07a";
         line-height: 1;
@@ -146,14 +154,4 @@
     }
   }
 
-  &__button {
-    display: block;
-    padding: 6px 0;
-    color: #33a0ff;
-    border-bottom: 3px solid #33a0ff;
-    text-transform: uppercase;
-    font-weight: bold;
-    width: 85px;
-    margin: 0 auto;
-  }
 }
