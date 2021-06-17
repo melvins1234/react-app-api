@@ -39,8 +39,8 @@ const ProductContentCard = (props) => {
       )
     );
     dispatch(itemsTotalInCart());
-
   };
+
 
   return (
     <section className="product-listing__products__card">
@@ -81,7 +81,11 @@ const ProductContentCard = (props) => {
         <footer>
           <button
             onClick={(e) => {
-              AddToCartAnime(e, e.target.offsetParent.querySelector("img"), e.target.offsetParent);
+              AddToCartAnime(
+                e,
+                e.target.offsetParent.querySelector("img"),
+                e.target.offsetParent
+              );
               addToCartHandler(props);
             }}
             id="product-listing--add-to-cart-btn"

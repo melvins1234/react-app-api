@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Star } from "../Star/Star";
 import { toCart } from "../../store/action/toCart-action";
-import { quantityAdd, quantityDeduct, } from "../../store/action/quantityAddDeduct";
+import {
+  quantityAdd,
+  quantityDeduct,
+} from "../../store/action/quantityAddDeduct";
 import { favProd, unFavProd } from "../../store/action/favProd";
 import AddToCartAnime from "../AddToCartAnimate/AddToCartAnime";
 import { itemsInCart } from "../../store/action/itemsInCart";
@@ -27,7 +30,6 @@ export const ProductDetails = (props) => {
   };
 
   const onAddToCartHandler = (e) => {
-
     AddToCartAnime(
       e,
       e.target.offsetParent.querySelector("img"),
