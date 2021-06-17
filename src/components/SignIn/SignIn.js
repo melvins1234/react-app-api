@@ -1,7 +1,8 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, NavLink, Route } from "react-router-dom";
 
-import {addUser} from "../../store/action/addUser";
+import { addUser } from "../../store/action/addUser";
+import { checkUserExist } from "../../store/action/checkUserExist";
 import { Input, Button } from "../InputField/InputField";
 
 import "./SignIn.scss";
@@ -9,12 +10,36 @@ import "./SignInMedia.scss";
 
 export const SignIn = () => {
   let dispatch = useDispatch();
+  let state = useSelector((state) => state.users);
+  let isExist = useSelector((state) => state.isExist);
 
-  const onSubmit = (e) => {
+  const onSignUpSubmit = (e) => {
     e.preventDefault();
 
     let data = Object.fromEntries(new FormData(e.target).entries());
-    dispatch(addUser(data))
+    if (localStorage.getItem("users")) {
+      let index = JSON.parse(localStorage.getItem("users")).findIndex(
+        (e) => e.email === data.email
+      );
+      if (index < 0) dispatch(addUser(data));
+      else {
+        let tooltip = document.createElement("span");
+        tooltip.innerText = "Email is already in use.";
+        ["sign-up__invalid-feedback", "sign-up__invalid-feedback--show"].map(
+          (e) => tooltip.classList.add(e)
+        );
+        if (!document.querySelector(".sign-up__invalid-feedback")) {
+          e.target
+            .querySelector(`input[type='email']`)
+            .parentElement.classList.toggle("sign-up__input-group--error");
+          e.target
+            .querySelector(`input[type='email']`)
+            .parentElement.appendChild(tooltip);
+        }
+        e.target.querySelector(`input[type='email']`).style.border =
+          "1px solid red";
+      }
+    } else dispatch(addUser(data));
   };
   return (
     <section
@@ -31,7 +56,7 @@ export const SignIn = () => {
             </NavLink>
           </h1>
           <p className="sign-up__company-desc">
-            Browse from over 500 devices in your area.
+            Browse from over 500 devices in your area. {isExist}
           </p>
         </section>
         <Router>
@@ -48,7 +73,44 @@ export const SignIn = () => {
                   </NavLink>
                 </span>
               </header>
+
+              <section className="sign-up__form">
+                <form id="sign-up-submit" onSubmit={onSignUpSubmit}>
+                  <Input
+                    field={{ _uid: "fullname", label: "Full Name" }}
+                    type="text"
+                    required="required"
+                  ></Input>
+
+                  <Input
+                    field={{ _uid: "email", label: "Email" }}
+                    type="email"
+                    required="required"
+                  ></Input>
+                  <Input
+                    field={{ _uid: "password", label: "Password" }}
+                    type="password"
+                    required="required"
+                    placeholder="Must be at least 6 characters"
+                  ></Input>
+
+                  <Input
+                    field={{
+                      _uid: "updates",
+                      label: "Sign up for email updates",
+                    }}
+                    type="checkbox"
+                    className="sign-up__chkbox-label"
+                  ></Input>
+                  <Button
+                    className="sign-up__button"
+                    type="submit"
+                    value="Sign Up"
+                  ></Button>
+                </form>
+              </section>
             </Route>
+
             <Route path="/login">
               <header className="sign-up__header">
                 <h2 className="sign-up__header--title sign-in__header--title">
@@ -63,54 +125,29 @@ export const SignIn = () => {
                 </span>
               </header>
               <span className="sign-in__separate">OR</span>
-            </Route>
-            <section className="sign-up__form">
-              <form id="login-submit" onSubmit={onSubmit}>
-                <Route path="/signup">
+              <section className="sign-up__form">
+                <form id="login-submit">
                   <Input
-                    field={{ _uid: "fullName_", label: "Full Name" }}
-                    type="text"
+                    field={{ _uid: "email_", label: "Email" }}
+                    type="email"
                     required="required"
                   ></Input>
-                </Route>
+                  <Input
+                    field={{ _uid: "pass_", label: "Password" }}
+                    type="password"
+                    required="required"
+                    placeholder="Must be at least 6 characters"
+                  ></Input>
 
-                <Input
-                  field={{ _uid: "email_", label: "Email" }}
-                  type="email"
-                  required="required"
-                ></Input>
-                <Input
-                  field={{ _uid: "pass_", label: "Password" }}
-                  type="password"
-                  required="required"
-                  placeholder="Must be at least 6 characters"
-                ></Input>
-
-                <Route path="/login">
                   <Button
                     className="sign-up__button"
                     type="submit"
                     value="Sign In"
                   ></Button>
-                </Route>
+                </form>
+              </section>
+            </Route>
 
-                <Route path="/signup">
-                  <Input
-                    field={{
-                      _uid: "checkbox_",
-                      label: "Sign up for email updates",
-                    }}
-                    type="checkbox"
-                    className="sign-up__chkbox-label"
-                  ></Input>
-                  <Button
-                    className="sign-up__button"
-                    type="submit"
-                    value="Sign Up"
-                  ></Button>
-                </Route>
-              </form>
-            </section>
             <footer className="sign-up__footer">
               <span className="sign-up__footer--text">
                 By continuing, you agree to accept our Privacy Policy & Terms of

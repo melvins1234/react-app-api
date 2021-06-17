@@ -122,6 +122,10 @@
         margin-bottom: 20px;
         position: relative;
 
+        &--error{
+            margin-bottom: 35px;
+        }
+
         label{
             margin-bottom: 8px;
             font-weight: 500;
@@ -228,7 +232,8 @@
         display: none;
         margin-top: 10px;
         color: #FD2E2E;
-
+        bottom: -20px;
+        position: absolute;
         &--show{
             display: block;
         }
