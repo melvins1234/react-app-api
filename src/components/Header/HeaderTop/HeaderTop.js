@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { itemsInCart } from "../../../store/action/itemsInCart";
+import { useSelector } from "react-redux";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,16 +10,8 @@ import {
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 
 export const HeaderTop = () => {
-  let dispatch = useDispatch();
-  dispatch(
-    itemsInCart(
-      JSON.parse(localStorage.getItem("cart"))
-        ? JSON.parse(localStorage.getItem("cart")).length
-        : 0
-    )
-  );
+  let isLoggedIn = useSelector((state) => state.isLoggedIn);
 
-  // dispatch(itemsTotalInCart());
   let state = useSelector((state) => state.itemsInCart);
   let totalPrice = useSelector((state) => state.totalPrice);
 
@@ -33,9 +24,13 @@ export const HeaderTop = () => {
         USD&nbsp; <FontAwesomeIcon icon={faCaretDown} />{" "}
       </span>
       <div className="header__top--user-profile">
-        <NavLink to="/login" activeClassName="active">
-          <FontAwesomeIcon icon={faUser} /> Log in
-        </NavLink>
+        {isLoggedIn ? (
+          "My Profile"
+        ) : (
+          <NavLink to="/login" activeClassName="active">
+            <FontAwesomeIcon icon={faUser} /> Log in
+          </NavLink>
+        )}
       </div>
       <div className="header__top--cart">
         <FontAwesomeIcon icon={faShoppingBasket} />

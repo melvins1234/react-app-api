@@ -3,7 +3,7 @@ const isLoggedIn = (state = false, action) => {
         case 'user-login':
             return state = true;
         default:
-            break;
+            return false
     }
 }
 
