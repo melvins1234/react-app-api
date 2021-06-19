@@ -15,7 +15,8 @@ export const Cart = () => {
 
   let checkOutHandler = () => {
     if (isLoggedIn) {
-      // dispatch(checkOutProduct());
+      localStorage.removeItem('cart')
+      dispatch(checkOutProduct());
     } else history.push("/login");
   };
 
