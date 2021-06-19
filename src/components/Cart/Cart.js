@@ -1,25 +1,39 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router";
+
+import { checkOutProduct } from "../../store/action/toCart-action";
+import { CartList } from "./CartList";
 
 import "./Cart.scss";
-import {CartList} from './CartList'
 
 export const Cart = () => {
+  let history = useHistory();
   const products = useSelector((state) => state.cart);
   let totalPrice = useSelector((state) => state.totalPrice);
+  let isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const dispatch = useDispatch();
+
+  let checkOutHandler = () => {
+    if (isLoggedIn) {
+      // dispatch(checkOutProduct());
+    } else history.push("/login");
+  };
 
   let cartList = products.map((e) => {
-    return(<CartList
-      key={JSON.stringify(e)}
-      id={e.id}
-      image={e.image}
-      product={e.product}
-      price={e.price}
-      discountedPrice={e.discountedPrice}
-      stars={e.stars}
-      hotProduct={e.hotProduct}
-      quantity={e.quantity}
-    />)
-  })
+    return (
+      <CartList
+        key={JSON.stringify(e)}
+        id={e.id}
+        image={e.image}
+        product={e.product}
+        price={e.price}
+        discountedPrice={e.discountedPrice}
+        stars={e.stars}
+        hotProduct={e.hotProduct}
+        quantity={e.quantity}
+      />
+    );
+  });
 
   return (
     <section className="cart-section wrapper">
@@ -30,7 +44,11 @@ export const Cart = () => {
         <div className="cart-section__table-header--price">PRICE</div>
       </div>
       <div className="cart-section__product-list">
-        {cartList}
+        {cartList.length !== 0 ? (
+          cartList
+        ) : (
+          <span className="cart-section--empty">Your cart is empty</span>
+        )}
       </div>
 
       <div className="cart-section__bottom">
@@ -55,10 +73,15 @@ export const Cart = () => {
           </div>
           <div className="cart-section__bottom__total-table--total">
             <span>Total</span>
-            <span id="cart-section__total">$ {(parseFloat(totalPrice) + 20).toFixed(2)}</span>
+            <span id="cart-section__total">
+              $ {(parseFloat(totalPrice) + 20).toFixed(2)}
+            </span>
           </div>
           <div className="cart-section__bottom__total-table--check-out">
-            <button className="cart-section__bottom__total-table--check-out--btn">
+            <button
+              onClick={() => checkOutHandler()}
+              className="cart-section__bottom__total-table--check-out--btn"
+            >
               Check Out
             </button>
           </div>

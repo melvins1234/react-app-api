@@ -1,6 +1,7 @@
-export const isLoggedIn = () => {
+export const isLoggedIn = (value) => {
     return {
-        type: 'user-login'
+        type: 'user-login',
+        payload: value
     }
 }
 

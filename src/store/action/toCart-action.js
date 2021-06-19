@@ -11,3 +11,9 @@ export const toCartMinus = (value) => {
         payload: value
     }
 }
+
+export const checkOutProduct = () => {
+    return {
+        type: 'checkout'
+    }
+}

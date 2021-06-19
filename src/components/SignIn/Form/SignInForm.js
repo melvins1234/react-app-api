@@ -10,9 +10,9 @@ const SignInForm = () => {
 
     let data = Object.fromEntries(new FormData(e.target).entries());
 
-    let isExist = users.some((e) => e.email === data.email);
+    let isExist = users.find((e) => e.email === data.email);
     if (isExist) {
-      dispatch(isLoggedIn());
+      dispatch(isLoggedIn(isExist));
     }
   };
 
