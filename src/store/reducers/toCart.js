@@ -28,7 +28,8 @@ const Cart = (state = initState, action) => {
       });
       localStorage.setItem("cart", JSON.stringify(state));
       return state;
-
+    case "checkout":
+      return state = [];
     default:
       return state;
   }
