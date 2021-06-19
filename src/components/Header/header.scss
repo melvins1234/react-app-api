@@ -33,14 +33,35 @@
     display: flex;
     padding: 10px 0 20px 0;
     width: 100%;
+    justify-content: space-between;
+
+    &--right {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    &--account__container {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      width: 150px;
+      top: -8px;
+      padding: 0 10px;
+      text-align: right;
+    }
 
     span {
       margin: 10px;
     }
 
     &--user-profile {
-      margin-left: auto;
+      padding: 0 !important;
       font-weight: bold;
+      width: 150px;
+      text-align: right;
+      position: relative;
     }
 
     div {

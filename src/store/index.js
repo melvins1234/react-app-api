@@ -6,6 +6,7 @@ import itemsInCart from './reducers/itemsInCart'
 import itemsTotalInCart from './reducers/itemsTotalInCart'
 import quantityAddDeduct from './reducers/quantityAddDeduct'
 import addUser from './reducers/addUser'
+import isLoggedIn from './reducers/isLoggedIn'
 
 const allReducers = combineReducers({
   products: Products,
@@ -13,7 +14,8 @@ const allReducers = combineReducers({
   itemsInCart: itemsInCart,
   totalPrice: itemsTotalInCart,
   quantity: quantityAddDeduct,
-  users: addUser
+  users: addUser,
+  isLoggedIn: isLoggedIn,
 })
 
 export default allReducers;
