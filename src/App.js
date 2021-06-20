@@ -15,6 +15,7 @@ import { Breadcrumbs } from "./components/Breadcrumbs/Breadcrumbs";
 import { Modal } from "./components/Modal/Modal";
 import { ProductList } from "./components/ProductList/ProductList";
 import { Cart } from "./components/Cart/Cart";
+import { Payment } from "./components/Payment/Payment";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
           "/macbook",
           "/cart",
           "/accessories",
+          "/payment"
         ]}
         component={() => [
           showModal ? <Modal key="modal" setShowModal={setShowModal} /> : null,
@@ -55,7 +57,9 @@ const App = () => {
         ]}
         component={() => [<Breadcrumbs key="breadcrumbs" />]}
       />
+
       <Route exact path="/cart" component={() => [<Cart key="Cart" />]} />
+      <Route exact path="/payment" component={() => [<Payment key="Payment" />]} />
 
       <Route
         exact
@@ -94,6 +98,7 @@ const App = () => {
           "/macbook",
           "/cart",
           "/accessories",
+          "/payment"
         ]}
         component={() => [<Footer key="Footer" />]}
       />

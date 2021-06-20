@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { addUser } from "../../../store/action/addUser";
 import { Input, Button } from "../../InputField/InputField";
+import { EmailFieldErrorMessage } from "./EmailFieldErrorMessage";
 
 const SignUpForm = ({setSuccessSignUp}) => {
   let dispatch = useDispatch();
@@ -18,21 +19,7 @@ const SignUpForm = ({setSuccessSignUp}) => {
         dispatch(addUser(data));
         setSuccessSignUp(true);
       } else {
-        let tooltip = document.createElement("span");
-        tooltip.innerText = "Email is already in use.";
-        ["sign-up__invalid-feedback", "sign-up__invalid-feedback--show"].map(
-          (e) => tooltip.classList.add(e)
-        );
-        if (!document.querySelector(".sign-up__invalid-feedback")) {
-          e.target
-            .querySelector(`input[type='email']`)
-            .parentElement.classList.toggle("sign-up__input-group--error");
-          e.target
-            .querySelector(`input[type='email']`)
-            .parentElement.appendChild(tooltip);
-        }
-        e.target.querySelector(`input[type='email']`).style.border =
-          "1px solid red";
+        EmailFieldErrorMessage(e, 'Email is already in use.')
       }
     } else {
       dispatch(addUser(data));
