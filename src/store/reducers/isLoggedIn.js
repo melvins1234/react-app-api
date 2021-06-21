@@ -3,9 +3,9 @@ const isLoggedIn = (state = false, action) => {
     case "user-login":
       return (state = { isLoggedIn: true, userLoggedIn: action.payload });
     case "user-logout":
-      return false;
+      return (state = false);
     default:
-      return false;
+      return state;
   }
 };
 

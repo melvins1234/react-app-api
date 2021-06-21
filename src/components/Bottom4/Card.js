@@ -18,9 +18,14 @@ export const UpperCard = ({ image, imageAlt, date, title, desc }) => {
 };
 
 export const LowerCard = ({ image, title, star, price }) => {
+  const addDefaultSrc = (e)=> {
+    e.target.src = image
+  }
+  
   return (
     <article className="bottom4__news__box">
       <img
+        onError={(e) => addDefaultSrc(e)}
         src={`${process.env.PUBLIC_URL}/images/${image}`}
         alt={`${title}`}
       />

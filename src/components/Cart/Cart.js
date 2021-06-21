@@ -1,8 +1,12 @@
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 
 import { checkOutProduct } from "../../store/action/toCart-action";
 import { CartList } from "./CartList";
+import { previousPath } from "../../store/action/previousPath";
+import { itemsInCart } from "../../store/action/itemsInCart";
+import { itemsTotalInCart } from "../../store/action/itemsTotalInCart";
 
 import "./Cart.scss";
 
@@ -15,8 +19,15 @@ export const Cart = () => {
 
   let checkOutHandler = () => {
     if (isLoggedIn) {
-      // dispatch(checkOutProduct());
-    } else history.push("/login");
+      localStorage.removeItem("cart");
+      dispatch(checkOutProduct());
+      dispatch(itemsInCart(0));
+      dispatch(itemsTotalInCart(0));
+      // history.push('/payment')
+    } else {
+      dispatch(previousPath(history.location.pathname));
+      history.push("/login");
+    }
   };
 
   let cartList = products.map((e) => {
