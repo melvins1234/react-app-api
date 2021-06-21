@@ -22,7 +22,7 @@ const Cart = (state = initState, action) => {
     case "toCartMinus":
       let isExistedIndex_ = state.findIndex((e) => e.id === action.payload.id);
       state = initState;
-      if(action.payload.quantity != 0){
+      if(action.payload.quantity !== 0){
         state.splice(isExistedIndex_, 1, {
           ...action.payload,
           quantity: state[isExistedIndex_].quantity - 1,
