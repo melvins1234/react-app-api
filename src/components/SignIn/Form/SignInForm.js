@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { isLoggedIn } from "../../../store/action/isLoggedIn";
 import { Input, Button } from "../../InputField/InputField";
+import { EmailFieldErrorMessage } from "./EmailFieldErrorMessage";
 
 const SignInForm = () => {
   const dispatch = useDispatch();
@@ -11,8 +12,9 @@ const SignInForm = () => {
     let data = Object.fromEntries(new FormData(e.target).entries());
 
     let isExist = users.find((e) => e.email === data.email);
-    if (isExist) {
-      dispatch(isLoggedIn(isExist));
+    if (isExist) dispatch(isLoggedIn(isExist));
+    else {
+      EmailFieldErrorMessage(e, `This email address doesn't exist.`)
     }
   };
 

@@ -14,11 +14,12 @@ import "./SignInMedia.scss";
 
 export const SignIn = () => {
   let history = useHistory();
+  let path = useSelector(state => state.path)
   let [successSignUp, setSuccessSignUp] = useState(false);
   const isExist = useSelector(state => state.isLoggedIn)
   if(isExist) {
     setTimeout(() =>{
-      history.push('/')
+      history.push(path)
     }, 200)
   }
   useEffect(() => {
