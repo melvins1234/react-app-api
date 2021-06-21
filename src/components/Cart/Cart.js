@@ -19,11 +19,11 @@ export const Cart = () => {
 
   let checkOutHandler = () => {
     if (isLoggedIn) {
-      // localStorage.removeItem("cart");
-      // dispatch(checkOutProduct());
-      // dispatch(itemsInCart(0));
-      // dispatch(itemsTotalInCart(0));
-      history.push('/payment')
+      localStorage.removeItem("cart");
+      dispatch(checkOutProduct());
+      dispatch(itemsInCart(0));
+      dispatch(itemsTotalInCart(0));
+      // history.push('/payment')
     } else {
       dispatch(previousPath(history.location.pathname));
       history.push("/login");
