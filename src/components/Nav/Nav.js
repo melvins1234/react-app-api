@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
@@ -5,10 +6,19 @@ import { faBars, faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
 import "./Nav.scss";
 import "./NavMedia.scss";
 export const Nav = () => {
+  let state = useSelector((state) => state.itemsInCart);
+  const toggleNavHandler = () => {
+    let nav = document.querySelector(".header__nav-bar");
+    nav.classList.toggle('header__nav-bar--show')
+  };
   return (
     <nav className="header__main-nav header__mobile">
       <section className="header__nav">
-        <button type="button" className="header__main-nav--toggle">
+        <button
+          onClick={toggleNavHandler}
+          type="button"
+          className="header__main-nav--toggle"
+        >
           <FontAwesomeIcon icon={faBars} />
         </button>
 
@@ -21,9 +31,11 @@ export const Nav = () => {
         </div>
 
         <div className="header__top--cart header__mobile--cart">
-          <NavLink to='/cart'>
+          <NavLink to="/cart">
             <FontAwesomeIcon icon={faShoppingBasket} />
-            <span className="header__top--cart header__mobile--cart--badge"></span>
+            <span className="header__top--cart header__mobile--cart--badge">
+              {state}
+            </span>
           </NavLink>
         </div>
       </section>

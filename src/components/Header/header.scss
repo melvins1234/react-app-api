@@ -7,10 +7,21 @@
   }
 
   &__mobile {
-    &--logo,
-    &--cart {
+    @mixin displayNonePositionRelative {
       display: none;
       position: relative;
+    }
+    &--logo {
+      @include displayNonePositionRelative();
+    }
+    &--cart {
+      @include displayNonePositionRelative();
+      a {
+        color: #2e90e5;
+      }
+      span{
+        background-color: #2e90e5;
+      }
     }
 
     &--cart--badge {
@@ -34,6 +45,7 @@
     padding: 10px 0 20px 0;
     width: 100%;
     justify-content: space-between;
+    align-items: center;
 
     &--right {
       display: flex;
@@ -59,7 +71,7 @@
     &--user-profile {
       padding: 0 !important;
       font-weight: bold;
-      width: 150px;
+      width: 130px;
       text-align: right;
       position: relative;
     }
