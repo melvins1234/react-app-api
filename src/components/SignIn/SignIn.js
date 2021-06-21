@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, NavLink, Route, useHistory } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  NavLink,
+  Route,
+  useHistory,
+} from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import SignUpForm from "./Form/SignUpForm";
@@ -14,13 +19,13 @@ import "./SignInMedia.scss";
 
 export const SignIn = () => {
   let history = useHistory();
-  let path = useSelector(state => state.path)
+  let path = useSelector((state) => state.path);
   let [successSignUp, setSuccessSignUp] = useState(false);
-  const isExist = useSelector(state => state.isLoggedIn)
-  if(isExist) {
-    setTimeout(() =>{
-      history.push(path)
-    }, 200)
+  const isExist = useSelector((state) => state.isLoggedIn);
+  if (isExist) {
+    setTimeout(() => {
+      history.push(path);
+    }, 200);
   }
   useEffect(() => {
     window.addEventListener("click", (e) => {
@@ -32,6 +37,12 @@ export const SignIn = () => {
         e.target.style.border = "1px solid #C4C4C4";
         document.querySelector(".sign-up__invalid-feedback").remove();
       } else if (e.target.id === "modal") {
+        setSuccessSignUp(false);
+      } else if (
+        e.target.className
+          .split(" ")
+          .indexOf("successful-registered__success") > -1
+      ) {
         setSuccessSignUp(false);
       }
     });
