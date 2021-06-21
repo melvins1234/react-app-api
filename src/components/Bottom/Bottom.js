@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import { BottomHeader } from "./BottomHeader";
@@ -8,29 +9,36 @@ import "./BottomMedia.scss";
 
 export const Bottom = () => {
   const productList = useSelector((state) => state.products);
+  const [itemsList, setItemsList] = useState([]);
 
-  let productListCard = productList.map((e) => {
-    return (
-      <Card
-        key={JSON.stringify(e)}
-        id={e.id}
-        image={e.image}
-        product={e.product}
-        price={e.price}
-        discountedPrice={e.discountedPrice}
-        stars={e.stars}
-        hotProduct={e.hotProduct}
-        quantity={e.quantity}
-        favorite={e.favorite}
-      />
-    );
-  });
+  useEffect(() => {
+    return fetch("https://fakestoreapi.com/products")
+      .then((res) => res.json())
+      .then((json) => setItemsList(json));
+  }, []);
 
   return (
     <section id="bottom1" className="bottom1">
       <section className="wrapper">
         <BottomHeader />
-        <article className="bottom1__products">{productListCard}</article>
+        <article className="bottom1__products">
+          {productList.map((e) => {
+            return (
+              <Card
+                key={JSON.stringify(e)}
+                id={e.id}
+                image={e.image}
+                product={e.product}
+                price={e.price}
+                discountedPrice={e.discountedPrice}
+                stars={e.stars}
+                hotProduct={e.hotProduct}
+                quantity={e.quantity}
+                favorite={e.favorite}
+              />
+            );
+          })}
+        </article>
         <span className="bottom1__button">Load More</span>
       </section>
     </section>
