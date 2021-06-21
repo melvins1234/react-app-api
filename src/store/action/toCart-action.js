@@ -17,3 +17,9 @@ export const checkOutProduct = () => {
         type: 'checkout'
     }
 }
+export const removeProduct = (value) => {
+    return {
+        type: 'removeProduct',
+        payload: value
+    }
+}
