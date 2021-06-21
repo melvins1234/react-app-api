@@ -10,6 +10,8 @@ import "./BottomMedia.scss";
 export const Bottom = () => {
   const productList = useSelector((state) => state.products);
   const [itemsList, setItemsList] = useState([]);
+  
+  console.log(itemsList);
 
   useEffect(() => {
     return fetch("https://fakestoreapi.com/products")

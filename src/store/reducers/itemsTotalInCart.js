@@ -21,6 +21,10 @@ const itemsTotalInCart = (state = initState.toFixed(2), action) => {
         });
       }
       return initState.toFixed(2);
+    case "removed-product":
+      let total =
+        action.payload.quantity * parseFloat(action.payload.discountedPrice);
+      return ((state = state - total).toFixed(2));
     default:
       return state;
   }

@@ -4,3 +4,10 @@ export const itemsTotalInCart = (value) => {
         payload: value
     }
 }
+
+export const removeTotalInCart = (value) => {
+    return {
+        type: 'removed-product',
+        payload: value
+    }
+}
