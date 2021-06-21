@@ -5,7 +5,10 @@ let initState = JSON.parse(localStorage.getItem("cart"))
 const itemsInCart = (state = initState, action) => {
   switch (action.type) {
     case "count-items-in-cart":
-      return action.payload;
+      state = JSON.parse(localStorage.getItem("cart"))
+      ? JSON.parse(localStorage.getItem("cart")).length
+      : 0;
+      return state;
     default:
       return state;
   }

@@ -22,14 +22,21 @@ const Cart = (state = initState, action) => {
     case "toCartMinus":
       let isExistedIndex_ = state.findIndex((e) => e.id === action.payload.id);
       state = initState;
-      state.splice(isExistedIndex_, 1, {
-        ...action.payload,
-        quantity: state[isExistedIndex_].quantity - 1,
-      });
+      if(action.payload.quantity !== 0){
+        state.splice(isExistedIndex_, 1, {
+          ...action.payload,
+          quantity: state[isExistedIndex_].quantity - 1,
+        });
+      }
       localStorage.setItem("cart", JSON.stringify(state));
       return state;
     case "checkout":
-      return state = [];
+      return (state = []);
+    case "removeProduct":
+      let isExistedIndex__ = state.findIndex((e) => e.id === action.payload.id);
+      state.splice(isExistedIndex__, 1);
+      localStorage.setItem("cart", JSON.stringify(state));
+      return state;
     default:
       return state;
   }

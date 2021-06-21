@@ -26,15 +26,9 @@ export const Card = (props) => {
 
   const addToCartHandler = (data) => {
     setAddToCart(true);
- 
+
     dispatch(toCart(data));
-    dispatch(
-      itemsInCart(
-        JSON.parse(localStorage.getItem("cart"))
-          ? JSON.parse(localStorage.getItem("cart")).length
-          : 0
-      )
-    );
+    dispatch(itemsInCart());
 
     dispatch(itemsTotalInCart(data.discountedPrice));
   };
