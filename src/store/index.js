@@ -8,6 +8,7 @@ import quantityAddDeduct from './reducers/quantityAddDeduct'
 import addUser from './reducers/addUser'
 import isLoggedIn from './reducers/isLoggedIn'
 import previousPath from './reducers/previousPath'
+import token from './reducers/token'
 
 const allReducers = combineReducers({
   products: Products,
@@ -18,6 +19,7 @@ const allReducers = combineReducers({
   users: addUser,
   isLoggedIn: isLoggedIn,
   path: previousPath,
+  token : token,
 })
 
 export default allReducers;

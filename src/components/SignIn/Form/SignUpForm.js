@@ -1,3 +1,4 @@
+import {useEffect} from 'react'
 import { useDispatch } from "react-redux";
 import { addUser } from "../../../store/action/addUser";
 import { Input, Button } from "../../InputField/InputField";
@@ -6,25 +7,20 @@ import { EmailFieldErrorMessage } from "./EmailFieldErrorMessage";
 const SignUpForm = ({setSuccessSignUp}) => {
   let dispatch = useDispatch();
 
-  const SignUpFunction = (e) => {
-    e.preventDefault();
+  
 
-    let data = Object.fromEntries(new FormData(e.target).entries());
-    
-    if (localStorage.getItem("users")) {
-      let index = JSON.parse(localStorage.getItem("users")).findIndex(
-        (e) => e.email === data.email
-      );
-      if (index < 0) {
-        dispatch(addUser(data));
-        setSuccessSignUp(true);
-      } else {
-        EmailFieldErrorMessage(e, 'Email is already in use.')
-      }
-    } else {
-      dispatch(addUser(data));
-      setSuccessSignUp(true);
-    }
+  const SignUpFunction = async (e) => {
+    // e.preventDefault();
+    // let {data} = Object.fromEntries(new FormData(e.target).entries());
+
+    // await fetch('/users',{
+    //   method: 'POST',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(data)
+    // });
   };
 
   return (

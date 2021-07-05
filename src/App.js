@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import Header from "./components/Header/Header";
 import { Product } from "./components/Product/Product";
@@ -17,15 +18,45 @@ import { ProductList } from "./components/ProductList/ProductList";
 import { Cart } from "./components/Cart/Cart";
 import { Payment } from "./components/Payment/Payment";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import { token } from "./store/action/token";
 
 const App = () => {
+  const dispatch = useDispatch();
+
+
   const isModalClose = () =>
     !sessionStorage.getItem("isModalClose") ? true : false;
+
+  useEffect(() => {
+    
+    let details = {
+        username: "admin",
+        password: "root",
+      };
+  
+      let formBody = Object.keys(details)
+        .map((e) => `${encodeURIComponent(e)}=${encodeURIComponent(details[e])}`)
+        .join("&");
+  
+      fetch("/auth", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: formBody,
+      })
+        .then((res) => res.json())
+        .then((json) => sessionStorage.setItem('token', json.token));
+
+
+     
+  }, []);
 
   let [showModal, setShowModal] = useState(isModalClose());
   return (
     <Router>
-      <ScrollToTop key='ScrollToTop'/>
+      <ScrollToTop key="ScrollToTop" />
       <Route
         exact
         path={[
@@ -37,7 +68,7 @@ const App = () => {
           "/macbook",
           "/cart",
           "/accessories",
-          "/payment"
+          "/payment",
         ]}
         component={() => [
           showModal ? <Modal key="modal" setShowModal={setShowModal} /> : null,
@@ -59,11 +90,15 @@ const App = () => {
       />
 
       <Route exact path="/cart" component={() => [<Cart key="Cart" />]} />
-      <Route exact path="/payment" component={() => [<Payment key="Payment" />]} />
+      <Route
+        exact
+        path="/payment"
+        component={() => [<Payment key="Payment" />]}
+      />
 
       <Route
         exact
-        path={["/store", '/accessories']}
+        path={["/store", "/accessories"]}
         component={() => [<ProductList key="ProductList" />]}
       />
       <Route
@@ -98,7 +133,7 @@ const App = () => {
           "/macbook",
           "/cart",
           "/accessories",
-          "/payment"
+          "/payment",
         ]}
         component={() => [<Footer key="Footer" />]}
       />
