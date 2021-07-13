@@ -101,7 +101,7 @@ export const Footer = (key) => {
           <span>© 2018 Ecommerce theme by www.bisenbaev.com</span>
           <div className="footer__bottom--fund-transfers">
             <img src="images/Western-union.png" alt="Sample" />
-            <img src="images/Group 19.png" alt="Sample" />
+            <img src="images/MasterCard.png" alt="Sample" />
             <img src="images/Paypal.png" alt="Sample" />
             <img src="images/visa.jpg" alt="Sample" />
           </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { BottomHeader } from "./BottomHeader";
 import { Card } from "../Card/Card";
@@ -9,15 +9,6 @@ import "./BottomMedia.scss";
 
 export const Bottom = () => {
   const productList = useSelector((state) => state.products);
-  const [itemsList, setItemsList] = useState([]);
-  
-  console.log(itemsList);
-
-  useEffect(() => {
-    return fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((json) => setItemsList(json));
-  }, []);
 
   return (
     <section id="bottom1" className="bottom1">
@@ -32,7 +23,7 @@ export const Bottom = () => {
                 image={e.image}
                 product={e.product}
                 price={e.price}
-                discountedPrice={e.discountedPrice}
+                discountedPrice={e.discount}
                 stars={e.stars}
                 hotProduct={e.hotProduct}
                 quantity={e.quantity}
