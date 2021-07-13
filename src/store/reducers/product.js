@@ -1,11 +1,10 @@
 let initState = JSON.parse(localStorage.getItem("products"))
   ? JSON.parse(localStorage.getItem("products"))
   : [];
-const Products = (state = initState, action) => {
+const Products = (state = [], action) => {
   switch (action.type) {
     case "load":
       state = [...action.payload];
-      localStorage.setItem("products", JSON.stringify(action.payload));
       return state;
 
     case "favorite":

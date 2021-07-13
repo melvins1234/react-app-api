@@ -3,28 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { BottomHeader } from "./BottomHeader";
 import { Card } from "../Card/Card";
-import {loadProducts} from "../../store/action/loadProducts"
 
 import "./Bottom.scss";
 import "./BottomMedia.scss";
 
 export const Bottom = () => {
   const productList = useSelector((state) => state.products);
-  const dispatch = useDispatch();
-  let apiToken = sessionStorage.getItem('token')
-
-  useEffect(() => {
-     setTimeout(() => {
-        fetch("/products", {
-          method: 'GET',
-          headers: new Headers({
-            "Authorization": apiToken,
-            'Content-Type': 'application/x-www-form-urlencoded'
-          })
-        }).then((res) => res.json())
-        .then((json) => console.log(json));
-      }, 500)
-  })
 
   return (
     <section id="bottom1" className="bottom1">
@@ -39,7 +23,7 @@ export const Bottom = () => {
                 image={e.image}
                 product={e.product}
                 price={e.price}
-                discountedPrice={e.discountedPrice}
+                discountedPrice={e.discount}
                 stars={e.stars}
                 hotProduct={e.hotProduct}
                 quantity={e.quantity}
