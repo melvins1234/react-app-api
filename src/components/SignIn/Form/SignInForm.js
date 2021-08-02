@@ -2,28 +2,54 @@ import { useSelector, useDispatch } from "react-redux";
 import { isLoggedIn } from "../../../store/action/isLoggedIn";
 import { Input, Button } from "../../InputField/InputField";
 import { EmailFieldErrorMessage } from "./EmailFieldErrorMessage";
+import { token } from "../../../store/action/token";
 
 const SignInForm = () => {
   const dispatch = useDispatch();
   const apiToken = useSelector((state) => state.token);
+
   const onSubmit = async (e) => {
     e.preventDefault();
 
     let data = Object.fromEntries(new FormData(e.target).entries());
 
-    await fetch(`/users/search?email=${data.email}&password=${data.password}`, {
-      method: "GET",
-      headers: new Headers({
-        Authorization: apiToken,
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      }),
+    let details = {
+      email: data.email,
+      password: data.password,
+    };
+
+    let formBody = Object.keys(details)
+      .map((e) => `${encodeURIComponent(e)}=${encodeURIComponent(details[e])}`)
+      .join("&");
+
+    fetch("/auth", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: formBody,
     })
       .then((res) => res.json())
       .then((json) => {
-        dispatch(isLoggedIn(json));
-      })
-      .catch((err) => {EmailFieldErrorMessage(e, `This email address doesn't exist.`)});
+        dispatch(token(json.token));
+      });
+
+    // fetch(`/users/search?email=${data.email}&password=${data.password}`, {
+    //   method: "GET",
+    //   headers: new Headers({
+    //     Authorization: apiToken,
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //   }),
+    // })
+    //   .then((res) => res.json())
+    //   .then((json) => {
+    //     dispatch(isLoggedIn(json));
+    //   })
+    //   .catch((err) => {
+    //     EmailFieldErrorMessage(e, `This email address doesn't exist.`);
+    //   });
   };
 
   return (
