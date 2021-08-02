@@ -5,17 +5,25 @@ import { EmailFieldErrorMessage } from "./EmailFieldErrorMessage";
 
 const SignInForm = () => {
   const dispatch = useDispatch();
-  let users = useSelector((state) => state.users);
-  const onSubmit = (e) => {
+  const apiToken = useSelector((state) => state.token);
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     let data = Object.fromEntries(new FormData(e.target).entries());
 
-    let isExist = users.find((e) => e.email === data.email);
-    if (isExist) dispatch(isLoggedIn(isExist));
-    else {
-      EmailFieldErrorMessage(e, `This email address doesn't exist.`)
-    }
+    await fetch(`/users/search?email=${data.email}&password=${data.password}`, {
+      method: "GET",
+      headers: new Headers({
+        Authorization: apiToken,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      }),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        dispatch(isLoggedIn(json));
+      })
+      .catch((err) => {EmailFieldErrorMessage(e, `This email address doesn't exist.`)});
   };
 
   return (
