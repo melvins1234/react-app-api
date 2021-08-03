@@ -5,6 +5,7 @@ import { EmailFieldErrorMessage } from "./EmailFieldErrorMessage";
 import { token } from "../../../store/action/token";
 
 const SignInForm = () => {
+
   const dispatch = useDispatch();
   const apiToken = useSelector((state) => state.token);
 
@@ -12,7 +13,7 @@ const SignInForm = () => {
     e.preventDefault();
 
     let data = Object.fromEntries(new FormData(e.target).entries());
-
+    
     let details = {
       email: data.email,
       password: data.password,
@@ -34,22 +35,6 @@ const SignInForm = () => {
       .then((json) => {
         dispatch(token(json.token));
       });
-
-    // fetch(`/users/search?email=${data.email}&password=${data.password}`, {
-    //   method: "GET",
-    //   headers: new Headers({
-    //     Authorization: apiToken,
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((json) => {
-    //     dispatch(isLoggedIn(json));
-    //   })
-    //   .catch((err) => {
-    //     EmailFieldErrorMessage(e, `This email address doesn't exist.`);
-    //   });
   };
 
   return (
