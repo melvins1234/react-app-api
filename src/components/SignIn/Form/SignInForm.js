@@ -16,7 +16,7 @@ const SignInForm = () => {
     let details = {
       email: data.email,
       password: data.password,
-    };
+    }; 
 
     let formBody = Object.keys(details)
       .map((e) => `${encodeURIComponent(e)}=${encodeURIComponent(details[e])}`)
@@ -32,24 +32,14 @@ const SignInForm = () => {
     })
       .then((res) => res.json())
       .then((json) => {
-        dispatch(token(json.token));
+        if(json.token !== null){
+          dispatch(isLoggedIn(json));
+          dispatch(token(json.token));
+          console.log(json);
+        }else{
+          EmailFieldErrorMessage(e, `This email address doesn't exist.`); 
+        }
       });
-
-    // fetch(`/users/search?email=${data.email}&password=${data.password}`, {
-    //   method: "GET",
-    //   headers: new Headers({
-    //     Authorization: apiToken,
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((json) => {
-    //     dispatch(isLoggedIn(json));
-    //   })
-    //   .catch((err) => {
-    //     EmailFieldErrorMessage(e, `This email address doesn't exist.`);
-    //   });
   };
 
   return (
