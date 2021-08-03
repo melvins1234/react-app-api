@@ -18,6 +18,8 @@ import { ProductList } from "./components/ProductList/ProductList";
 import { Cart } from "./components/Cart/Cart";
 import { Payment } from "./components/Payment/Payment";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import { token } from "./store/action/token";
+import { loadProducts } from "./store/action/loadProducts";
 
 import { loadProducts } from "./store/action/loadProducts";
 

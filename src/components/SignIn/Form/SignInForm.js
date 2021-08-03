@@ -5,6 +5,7 @@ import { EmailFieldErrorMessage } from "./EmailFieldErrorMessage";
 import { token } from "../../../store/action/token";
 
 const SignInForm = () => {
+
   const dispatch = useDispatch();
   const apiToken = useSelector((state) => state.token);
 
@@ -12,7 +13,7 @@ const SignInForm = () => {
     e.preventDefault();
 
     let data = Object.fromEntries(new FormData(e.target).entries());
-
+    
     let details = {
       email: data.email,
       password: data.password,
