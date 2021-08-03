@@ -2,32 +2,45 @@ import { useSelector, useDispatch } from "react-redux";
 import { isLoggedIn } from "../../../store/action/isLoggedIn";
 import { Input, Button } from "../../InputField/InputField";
 import { EmailFieldErrorMessage } from "./EmailFieldErrorMessage";
+import { token } from "../../../store/action/token";
 
 const SignInForm = () => {
 
   const dispatch = useDispatch();
   const apiToken = useSelector((state) => state.token);
+
   const onSubmit = async (e) => {
     e.preventDefault();
 
     let data = Object.fromEntries(new FormData(e.target).entries());
+    
+    let details = {
+      email: data.email,
+      password: data.password,
+    }; 
 
-    await fetch(`/users/search?email=${data.email}&password=${data.password}`, {
-      method: "GET",
-      headers: new Headers({
-        Authorization: apiToken,
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      }),
+    let formBody = Object.keys(details)
+      .map((e) => `${encodeURIComponent(e)}=${encodeURIComponent(details[e])}`)
+      .join("&");
+
+    fetch("/auth", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: formBody,
     })
-      .then((res) => {
-        if (res.ok) dispatch(isLoggedIn(res.json()));
-        else {
-          EmailFieldErrorMessage(e, `This email address doesn't exist.`);
-          throw new Error(res.status);
+      .then((res) => res.json())
+      .then((json) => {
+        if(json.token !== null){
+          dispatch(isLoggedIn(json));
+          dispatch(token(json.token));
+          console.log(json);
+        }else{
+          EmailFieldErrorMessage(e, `This email address doesn't exist.`); 
         }
-      })
-      .catch((error) => console.log(error));
+      });
   };
 
   return (
